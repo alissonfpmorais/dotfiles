@@ -193,7 +193,7 @@ in
     docker
     docker-compose
     doppler
-    emacs
+    (import ./programs/emacs.nix { inherit pkgs; })
     fd
     firefox
     fzf
@@ -396,7 +396,7 @@ in
 
   # Enable emacs daemon
   services.emacs.enable = true;
-  
+
   # Enable lorri integration between nix-shell and direnv
   services.lorri.enable = true;
 
