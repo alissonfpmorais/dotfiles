@@ -25,7 +25,15 @@ in
       "${homeManager}/nixos"
     ];
 
+  # nix.package = pkgs.nixUnstable;
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # nix.gc = {
+  #   automatic = true;
+  #   dates = "weekly";
+  #   options = "--delete-older-than 30d";
+  # };
+  
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -159,6 +167,21 @@ in
   environment.pathsToLink = [ "/share/zsh" ];
   environment.variables = lib.recursiveUpdate (import ./private/job/envs.nix) {};
 
+  # environment = {
+  #   pathsToLink = [ "/share/zsh" ];
+  #   sessionVariables = {
+  #     # These are the defaults, and xdg.enable does set them, but due to load
+  #     # order, they're not set before environment.variables are set, which could
+  #     # cause race conditions.
+  #     XDG_CACHE_HOME  = "$HOME/.cache";
+  #     XDG_CONFIG_HOME = "$HOME/.config";
+  #     XDG_DATA_HOME   = "$HOME/.local/share";
+  #     XDG_BIN_HOME    = "$HOME/.local/bin";
+  #   };
+  #   shells = with pkgs; [ zsh ];
+  #   variables = lib.recursiveUpdate (import ./private/job/envs.nix) {};
+  # }
+
   # Enable docker
   virtualisation.docker = {
     enable = true;
@@ -193,7 +216,7 @@ in
     docker
     docker-compose
     doppler
-    (import ./programs/emacs.nix { inherit pkgs; })
+    # emacs
     fd
     firefox
     fzf
@@ -224,6 +247,10 @@ in
     # Unstable channel
     unstable.neovim
   ];
+
+  # environment.shellInit = ''
+  #   export PATH="$PATH:$HOME/.config/emacs/bin"
+  # '';
 
   fonts = {
     enableDefaultFonts = true;
@@ -395,7 +422,7 @@ in
   # services.openssh.enable = true;
 
   # Enable emacs daemon
-  services.emacs.enable = true;
+  # services.emacs.enable = true;
 
   # Enable lorri integration between nix-shell and direnv
   services.lorri.enable = true;
