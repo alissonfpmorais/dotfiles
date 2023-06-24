@@ -1,5 +1,0 @@
-# configuration.nix backup
-configuration.nix.save
-
-# private related stuff
-private/**
