@@ -242,7 +242,7 @@ in
     wget
 
     # Specific revisions
-    rev53951c.openvpn
+    # rev53951c.openvpn
 
     # Unstable channel
     unstable.neovim
