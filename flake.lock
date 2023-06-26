@@ -120,29 +120,11 @@
         "type": "github"
       }
     },
-    "openvpn-nixpkgs": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1621797987,
-        "narHash": "sha256-IhOXAhn2YZsoefKD0QMtLVj3cYeLOdPvUK/q5PCEy/8=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "53951c0c1444e500585205e8b2510270b2ad188f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "53951c0c1444e500585205e8b2510270b2ad188f",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "nix": "nix",
-        "nixpkgs": "nixpkgs_2",
-        "openvpn-nixpkgs": "openvpn-nixpkgs"
+        "nixpkgs": "nixpkgs_2"
       }
     }
   },

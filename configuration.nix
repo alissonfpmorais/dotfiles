@@ -227,7 +227,7 @@
     wget
 
     # Specific revisions
-    openvpn
+    # openvpn
 
     # Unstable channel
     neovim

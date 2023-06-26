@@ -3,10 +3,10 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    openvpn-nixpkgs = {
-      url = "github:NixOS/nixpkgs/53951c0c1444e500585205e8b2510270b2ad188f";
-      flake = false;
-    };
+    # openvpn-nixpkgs = {
+    #   url = "github:NixOS/nixpkgs/53951c0c1444e500585205e8b2510270b2ad188f";
+    #   flake = false;
+    # };
     # rev53951c = {
     #   url = "github:NixOS/nixpkgs/53951c0c1444e500585205e8b2510270b2ad188f";
     #   flake = false;
@@ -38,8 +38,9 @@
           }
           ({...}: {
             nixpkgs.overlays = [
-              (import ./overlays/openvpn.nix)
-              (import ./overlays/networkmanager-openvpn.nix)
+              (import ./overlays/openvpn.nix nixpkgs)
+              (import ./overlays/networkmanager.nix nixpkgs)
+              (import ./overlays/networkmanager-openvpn.nix nixpkgs)
             ];
           })
         ];
