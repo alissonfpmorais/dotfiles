@@ -126,25 +126,12 @@
     allowUnfree = true;
     
     # Dinamically (dis)allow insecure packages
-    #allowInsecurePredicate = pkg: true;
-
-    # Enable unstable packages to be installed
-    # packageOverrides = pkgs: {
-    #   rev53951c = import rev53951cTarball {
-    #     config = config.nixpkgs.config;
-    #   };
-    #   rev7cf5cc = import rev7cf5ccTarball {
-    #     config = config.nixpkgs.config;
-    #   };
-    #   unstable = import unstableTarball {
-    #     config = config.nixpkgs.config;
-    #   };
-    # };
+    # allowInsecurePredicate = pkg: true;
 
     # Statically allow insecure packages
-    #permittedInsecurePackages = [
-    #  "nodejs-16.20.0"
-    #];
+    # permittedInsecurePackages = [
+    #   "nodejs-16.20.0"
+    # ];
   };
 
   environment.shells = with pkgs; [ zsh ];
@@ -183,7 +170,7 @@
 
   networking.networkmanager.plugins = [
     # Specific revisions
-    pkgs.networkmanager-openvpn
+    pkgs.rev7cf5cc.networkmanager-openvpn
   ];
 
   # List packages installed in system profile. To search, run:
@@ -211,6 +198,7 @@
     lazygit
     microsoft-edge
     neofetch
+    neovim
     nixos-option
     nodejs_20
     pciutils
@@ -225,12 +213,6 @@
     vim
     vscode
     wget
-
-    # Specific revisions
-    # openvpn
-
-    # Unstable channel
-    neovim
   ];
 
   # environment.shellInit = ''
