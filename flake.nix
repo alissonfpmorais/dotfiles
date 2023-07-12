@@ -15,7 +15,7 @@
   let
     system = "x86_64-linux";
 
-    stdConfig = ./configuration.nix;
+    stdConfig = ./hosts/laptop/configuration.nix;
     overlays = import ./overlays (inputs // { inherit system; });
   in
   {
@@ -27,7 +27,7 @@
           stdConfig
           home-manager.nixosModules.home-manager {
             home-manager.useUserPackages = true;
-            home-manager.users.alissonfpmorais = import ./home.nix;
+            home-manager.users.alissonfpmorais = import ./hosts/laptop/home.nix;
           }
           overlays
         ];
