@@ -23,11 +23,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1687506590,
-        "narHash": "sha256-CSou9mrG9h/WVRjCptfTrATVxvhmtdQXElmWV/ZkrAs=",
+        "lastModified": 1688999869,
+        "narHash": "sha256-gLD2UI6+Nb9JV5Wh4FnLHAZwLMiY11RHYBKmBZCxLXc=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "d2b6f2d154bf6b27a93ed895392f80c503df7cfa",
+        "rev": "a6d1d954b81caf4c9291b8ac35452fef842f289b",
         "type": "github"
       },
       "original": {
@@ -60,11 +60,11 @@
         "nixpkgs-regression": "nixpkgs-regression"
       },
       "locked": {
-        "lastModified": 1687518526,
-        "narHash": "sha256-KgJlORFZXdILOLMcB/0nGJ+D8l7AzVA+LB9VaTbg5r0=",
+        "lastModified": 1688997541,
+        "narHash": "sha256-VNhpW4JC7qPj4urS5hiYm/zBkqv+aR0/emepZw/HsYQ=",
         "owner": "NixOS",
         "repo": "nix",
-        "rev": "fd4f03b8fdcb0f33552730c786139019e29f5dbe",
+        "rev": "4a880c3cc085841a1537040405bc142fefffd7ff",
         "type": "github"
       },
       "original": {
@@ -88,6 +88,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-openvpn": {
+      "locked": {
+        "lastModified": 1660687964,
+        "narHash": "sha256-8dJ8u/SUlJoHJVPFnFqoo7ugLH4RxyuyQTeuE6/EynE=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "7cf5ccf1cdb2ba5f08f0ac29fc3d04b0b59a07e4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "7cf5ccf1cdb2ba5f08f0ac29fc3d04b0b59a07e4",
+        "type": "github"
+      }
+    },
     "nixpkgs-regression": {
       "locked": {
         "lastModified": 1643052045,
@@ -104,29 +120,13 @@
         "type": "github"
       }
     },
-    "nixpkgs-rev7cf5cc": {
-      "locked": {
-        "lastModified": 1660687964,
-        "narHash": "sha256-8dJ8u/SUlJoHJVPFnFqoo7ugLH4RxyuyQTeuE6/EynE=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "7cf5ccf1cdb2ba5f08f0ac29fc3d04b0b59a07e4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "7cf5ccf1cdb2ba5f08f0ac29fc3d04b0b59a07e4",
-        "type": "github"
-      }
-    },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1687502512,
-        "narHash": "sha256-dBL/01TayOSZYxtY4cMXuNCBk8UMLoqRZA+94xiFpJA=",
+        "lastModified": 1689008574,
+        "narHash": "sha256-VFMgyHDiqsGDkRg73alv6OdHJAqhybryWHv77bSCGIw=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "3ae20aa58a6c0d1ca95c9b11f59a2d12eebc511f",
+        "rev": "4a729ce4b1fe5ec4fffc71c67c96aa5184ebb462",
         "type": "github"
       },
       "original": {
@@ -141,7 +141,7 @@
         "home-manager": "home-manager",
         "nix": "nix",
         "nixpkgs": "nixpkgs_2",
-        "nixpkgs-rev7cf5cc": "nixpkgs-rev7cf5cc"
+        "nixpkgs-openvpn": "nixpkgs-openvpn"
       }
     }
   },

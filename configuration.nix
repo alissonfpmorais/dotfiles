@@ -170,7 +170,7 @@
 
   networking.networkmanager.plugins = [
     # Specific revisions
-    pkgs.rev7cf5cc.networkmanager-openvpn
+    pkgs.networkmanager-openvpn
   ];
 
   # List packages installed in system profile. To search, run:
