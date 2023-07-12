@@ -10,12 +10,13 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-openvpn, nix, home-manager }@inputs:
+  # outputs = { self, nixpkgs, nixpkgs-openvpn, nix, home-manager }@inputs:
+  outputs = { nixpkgs, home-manager, ... }@inputs:
   let
     system = "x86_64-linux";
 
     stdConfig = ./configuration.nix;
-    overlays = import ./overlays { inherit nixpkgs nixpkgs-openvpn system; };
+    overlays = import ./overlays (inputs // { inherit system; });
   in
   {
     nixosConfigurations = {
