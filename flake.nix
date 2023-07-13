@@ -11,27 +11,12 @@
   };
 
   # outputs = { self, nixpkgs, nixpkgs-openvpn, nix, home-manager }@inputs:
-  outputs = { nixpkgs, home-manager, ... }@inputs:
+  outputs = { nixpkgs, home-manager, ... }@args:
   let
     system = "x86_64-linux";
-
-    stdConfig = ./hosts/laptop/configuration.nix;
-    overlays = import ./overlays (inputs // { inherit system; });
+    inputs = args // { inherit system; };
   in
   {
-    nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
-        inherit system;
-        # extraArgs = {};
-        modules = [
-          stdConfig
-          home-manager.nixosModules.home-manager {
-            home-manager.useUserPackages = true;
-            home-manager.users.alissonfpmorais = import ./hosts/laptop/home.nix;
-          }
-          overlays
-        ];
-      };
-    };
+    nixosConfigurations = import ./hosts inputs;
   };
 }

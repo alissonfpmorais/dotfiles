@@ -19,12 +19,6 @@
       name="Open emacs client";
     };
   };
-  # Swap fcitx-engines to fcitx5 (error while upgrading from 22.11 to 23.05)
-  # nixpkgs.overlays = [
-  #   (self: super: {
-  #     fcitx-engines = pkgs.fcitx5;
-  #   })
-  # ];
   programs = {
     # emacs = {
     #   enable = true;
