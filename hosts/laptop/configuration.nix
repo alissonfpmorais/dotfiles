@@ -136,7 +136,7 @@
 
   environment.shells = with pkgs; [ zsh ];
   environment.pathsToLink = [ "/share/zsh" ];
-  environment.variables = lib.recursiveUpdate (import ./private/job/envs.nix) {};
+  environment.variables = lib.recursiveUpdate (import ./job/envs.priv.nix) {};
 
   # environment = {
   #   pathsToLink = [ "/share/zsh" ];

@@ -102,13 +102,15 @@
           };
         }
       ];
-      shellAliases = lib.recursiveUpdate (import ./private/job/shell-aliases.nix) {
+      shellAliases = lib.recursiveUpdate (import ./job/shell-aliases.priv.nix) {
         dr = "doppler run";
         # lbup = "UID=$(id -u) GID=$(id -g) docker-compose -f ~/projects/alissonfpmorais/livebook/docker-compose.yml up -d --build";
         # lbdown = "UID=$(id -u) GID=$(id -g) docker-compose -f ~/projects/alissonfpmorais/livebook/docker-compose.yml down --rmi all";
         # lblogs = "UID=$(id -u) GID=$(id -g) docker-compose -f ~/projects/alissonfpmorais/livebook/docker-compose.yml logs --tail=\"all\"";
         # lblink = "lblogs | grep running";
         # lbl = "docker run -p 8080:8080 -p 8081:8081 --pull always -u $(id -u):$(id -g) -v /home/alissonfpmorais/projects/alissonfpmorais/livebook:/data ghcr.io/livebook-dev/livebook";
+        gitia = "git add --intent-to-add";
+        gitui = "git update-index --assume-unchanged";
         nicfg = "sudo nano /etc/nixos/configuration.nix";
         nigbg = "sudo nix-collect-garbage --delete-older-than";
         niopt = "nixos-option";
