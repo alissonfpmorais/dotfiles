@@ -98,8 +98,6 @@
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
   hardware.nvidia.modesetting.enable = true;
 
-  users.defaultUserShell = pkgs.zsh;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.alissonfpmorais = {
     isNormalUser = true;
@@ -129,12 +127,9 @@
     # ];
   };
 
-  environment.shells = with pkgs; [ zsh ];
-  environment.pathsToLink = [ "/share/zsh" ];
   environment.variables = lib.recursiveUpdate (import ./job/envs.priv.nix) {};
 
   # environment = {
-  #   pathsToLink = [ "/share/zsh" ];
   #   sessionVariables = {
   #     # These are the defaults, and xdg.enable does set them, but due to load
   #     # order, they're not set before environment.variables are set, which could
@@ -144,7 +139,6 @@
   #     XDG_DATA_HOME   = "$HOME/.local/share";
   #     XDG_BIN_HOME    = "$HOME/.local/bin";
   #   };
-  #   shells = with pkgs; [ zsh ];
   #   variables = lib.recursiveUpdate (import ./private/job/envs.nix) {};
   # }
 
@@ -171,43 +165,26 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    # default channel
     brave
-    cargo
     chromium
-    clang
-    coreutils
     dbeaver
     direnv
     docker
     docker-compose
     doppler
-    # emacs
-    fd
     firefox
-    fzf
     gitFull
     gnomeExtensions.pop-shell
     gnumake
-    inotify-tools
     lazygit
     microsoft-edge
-    neofetch
     neovim
-    nixos-option
     nodejs_20
-    pciutils
     python311
     python311Packages.pip
-    ripgrep
     robo3t
-    rustc
-    tldr
-    tree
-    unzip
     vim
     vscode
-    wget
   ];
 
   # environment.shellInit = ''
@@ -243,8 +220,6 @@
     vimAlias = true;
   };
 
-  programs.zsh.enable = true;
-
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
@@ -269,4 +244,11 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.11"; # Did you read the comment?
+
+  modules = {
+    shells.zsh = {
+      enable = true;
+      extraAliases = (import ./job/shell-aliases.priv.nix);
+    };
+  };
 }
