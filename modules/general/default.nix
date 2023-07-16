@@ -1,7 +1,6 @@
 { ... }:
 {
   imports = [
-    ./general
-    ./shells
+    ./git
   ];
 }

@@ -173,10 +173,8 @@
     docker-compose
     doppler
     firefox
-    gitFull
     gnomeExtensions.pop-shell
     gnumake
-    lazygit
     microsoft-edge
     neovim
     nodejs_20
@@ -246,9 +244,14 @@
   system.stateVersion = "22.11"; # Did you read the comment?
 
   modules = {
-    shells.zsh = {
-      enable = true;
-      extraAliases = (import ./job/shell-aliases.priv.nix);
+    general = {
+      git.enable = true;
+    };
+    shells = {
+      zsh = {
+        enable = true;
+        extraAliases = (import ./job/shell-aliases.priv.nix);
+      };
     };
   };
 }
