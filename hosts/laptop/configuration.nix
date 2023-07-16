@@ -212,7 +212,13 @@
     editors = {
       enable = true;
       defaultEditor = "neovim";
+      emacs = {
+        enable = true;
+      };
       neovim = {
+        enable = true;
+      };
+      vscode = {
         enable = true;
       };
     };
