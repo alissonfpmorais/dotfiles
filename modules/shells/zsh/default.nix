@@ -16,6 +16,16 @@ in
         MY_ENV_VAR = "value";
       };
     };
+    initExtra = mkOption {
+      default = "";
+      type = types.lines;
+      description = "Extra commands that should be added to <filename>.zshrc</filename>.";
+    };
+    initExtraFirst = mkOption {
+      default = "";
+      type = types.lines;
+      description = "Commands that should be added to top of <filename>.zshrc</filename>.";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -30,12 +40,10 @@ in
         enableCompletion = true;
         enableSyntaxHighlighting = true;
         initExtra = ''
+          ${cfg.initExtra}
           ## include config generated via "p10k configure" manually; zplug cannot edit home manager's zshrc file.
           ## note that I moved it from its original location to /etc/nixos/p10k
           [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-          ## Initializations
-          eval "$(direnv hook zsh)"
 
           ## Keybindings section
           bindkey -e
@@ -66,6 +74,9 @@ in
           ## Theming section
           autoload -U colors
           colors
+        '';
+        initExtraFirst = ''
+          ${cfg.initExtraFirst}
         '';
         plugins = [
           {

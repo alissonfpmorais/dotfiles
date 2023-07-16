@@ -168,7 +168,6 @@
     brave
     chromium
     dbeaver
-    direnv
     docker
     docker-compose
     doppler
@@ -226,9 +225,6 @@
   # Enable emacs daemon
   # services.emacs.enable = true;
 
-  # Enable lorri integration between nix-shell and direnv
-  services.lorri.enable = true;
-
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
@@ -246,6 +242,7 @@
   modules = {
     general = {
       git.enable = true;
+      lorri.enable = true;
     };
     shells = {
       zsh = {
