@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./browser
     ./git
     ./lorri
   ];

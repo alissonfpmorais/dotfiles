@@ -100,10 +100,6 @@
       "networkmanager"
       "wheel"
     ];
-    packages = with pkgs; [
-      firefox
-    #  thunderbird
-    ];
   };
 
   # Nixpkgs config
@@ -158,16 +154,12 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    brave
-    chromium
     dbeaver
     docker
     docker-compose
     doppler
-    firefox
     gnomeExtensions.pop-shell
     gnumake
-    microsoft-edge
     nodejs_20
     python311
     python311Packages.pip
@@ -212,15 +204,9 @@
     editors = {
       enable = true;
       defaultEditor = "neovim";
-      emacs = {
-        enable = true;
-      };
-      neovim = {
-        enable = true;
-      };
-      vscode = {
-        enable = true;
-      };
+      emacs.enable = true;
+      neovim.enable = true;
+      vscode.enable = true;
     };
     fonts = {
       enable = true;
@@ -228,6 +214,12 @@
       installs = [ "FiraCode" ];
     };
     general = {
+      browser = {
+        brave.enable = true;
+        chromium.enable = true;
+        edge.enable = true;
+        firefox.enable = true;
+      };
       git.enable = true;
       lorri.enable = true;
     };
