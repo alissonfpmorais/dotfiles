@@ -2,6 +2,6 @@
 {
   nixpkgs.overlays = [
     (import ../../overlays/fcitx-engines inputs)
-    (import ../../overlays/openvpn inputs)
+    (import ../../overlays/networkmanager-openvpn inputs)
   ];
 }
