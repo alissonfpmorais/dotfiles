@@ -178,20 +178,6 @@
   #   export PATH="$PATH:$HOME/.config/emacs/bin"
   # '';
 
-  fonts = {
-    enableDefaultFonts = true;
-    fontconfig = {
-      defaultFonts = {
-        monospace = [ "FiraCode" ];
-        sansSerif = [ "FiraCode" ];
-        serif = [ "FiraCode" ];
-      };
-    };
-    fonts = with pkgs; [
-      (nerdfonts.override { fonts = [ "FiraCode" ]; })
-    ];
-  };
-
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -229,6 +215,11 @@
       neovim = {
         enable = true;
       };
+    };
+    fonts = {
+      enable = true;
+      defaults = [ "FiraCode" ];
+      installs = [ "FiraCode" ];
     };
     general = {
       git.enable = true;
