@@ -168,12 +168,10 @@
     gnomeExtensions.pop-shell
     gnumake
     microsoft-edge
-    neovim
     nodejs_20
     python311
     python311Packages.pip
     robo3t
-    vim
     vscode
   ];
 
@@ -203,13 +201,6 @@
   #   enableSSHSupport = true;
   # };
 
-  programs.neovim = {
-    defaultEditor = true;
-    enable = true;
-    viAlias = true;
-    vimAlias = true;
-  };
-
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
@@ -233,6 +224,13 @@
   system.stateVersion = "22.11"; # Did you read the comment?
 
   modules = {
+    editors = {
+      enable = true;
+      defaultEditor = "neovim";
+      neovim = {
+        enable = true;
+      };
+    };
     general = {
       git.enable = true;
       lorri.enable = true;

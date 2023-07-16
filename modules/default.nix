@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./editors
     ./general
     ./shells
   ];
