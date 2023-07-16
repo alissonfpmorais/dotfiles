@@ -172,7 +172,6 @@
     python311
     python311Packages.pip
     robo3t
-    vscode
   ];
 
   # environment.shellInit = ''

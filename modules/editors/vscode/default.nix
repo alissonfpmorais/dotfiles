@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 
@@ -15,5 +15,9 @@ in
     };
   };
 
-  config = mkIf cfg.enable {};
+  config = mkIf cfg.enable {
+    users.users.alissonfpmorais.packages = with pkgs; [
+      vscode
+    ];
+  };
 }
