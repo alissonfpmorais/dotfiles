@@ -204,6 +204,7 @@
     editors = {
       enable = true;
       defaultEditor = "neovim";
+      androidStudio.enable = true;
       emacs.enable = true;
       neovim.enable = true;
       vscode.enable = true;

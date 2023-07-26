@@ -7,6 +7,7 @@ let
 in
 {
   imports = [
+    ./android-studio
     ./emacs
     ./neovim
     ./vscode
