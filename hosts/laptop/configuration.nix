@@ -154,6 +154,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    awscli
     dbeaver
     docker
     docker-compose
@@ -164,6 +165,7 @@
     python311
     python311Packages.pip
     robo3t
+    steampipe
   ];
 
   # environment.shellInit = ''
@@ -205,8 +207,14 @@
       enable = true;
       defaultEditor = "neovim";
       androidStudio.enable = false;
-      emacs.enable = true;
-      neovim.enable = true;
+      emacs = {
+        enable = true;
+        doom.enable = true;
+      };
+      neovim = {
+        enable = true;
+        astro.enable = true;
+      };
       vscode.enable = true;
     };
     fonts = {
