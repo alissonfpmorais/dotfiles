@@ -230,6 +230,7 @@
       };
       git.enable = true;
       lorri.enable = true;
+      pulumi.enable = true;
     };
     shells = {
       zsh = {

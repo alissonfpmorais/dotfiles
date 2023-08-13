@@ -5,5 +5,6 @@
     ./browser
     ./git
     ./lorri
+    ./pulumi
   ];
 }
