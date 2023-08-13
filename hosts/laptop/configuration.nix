@@ -154,7 +154,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    awscli
     dbeaver
     docker
     docker-compose
@@ -165,7 +164,6 @@
     python311
     python311Packages.pip
     robo3t
-    steampipe
   ];
 
   # environment.shellInit = ''
@@ -223,6 +221,7 @@
       installs = [ "FiraCode" ];
     };
     general = {
+      aws.enable = true;
       browser = {
         brave.enable = true;
         chromium.enable = true;
