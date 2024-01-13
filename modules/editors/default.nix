@@ -9,7 +9,9 @@ in
   imports = [
     ./android-studio
     ./emacs
+    ./idea
     ./neovim
+    ./rider
     ./vscode
   ];
 

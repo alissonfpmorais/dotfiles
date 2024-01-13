@@ -50,6 +50,7 @@ in
         extraConfig = {
           core = {
             autocrlf = "input";
+            editor = "code --wait";
           };
           init.defaultBranch = cfg.defaultBranch;
           safe.directory = "/etc/nixos";

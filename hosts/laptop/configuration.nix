@@ -209,10 +209,12 @@
         enable = true;
         doom.enable = true;
       };
+      idea.enable = true;
       neovim = {
         enable = true;
         astro.enable = true;
       };
+      rider.enable = true;
       vscode.enable = true;
     };
     fonts = {
@@ -227,10 +229,13 @@
         chromium.enable = true;
         edge.enable = true;
         firefox.enable = true;
+        vivaldi.enable = true;
       };
       git.enable = true;
       lorri.enable = true;
+      ngrok.enable = true;
       pulumi.enable = true;
+      # postman.enable = true;
     };
     shells = {
       zsh = {

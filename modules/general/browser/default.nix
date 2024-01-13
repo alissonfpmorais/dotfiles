@@ -5,5 +5,6 @@
     ./chromium
     ./edge
     ./firefox
+    ./vivaldi
   ];
 }

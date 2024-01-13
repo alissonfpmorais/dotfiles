@@ -5,6 +5,8 @@
     ./browser
     ./git
     ./lorri
+    ./ngrok
     ./pulumi
+    ./postman
   ];
 }

@@ -28,7 +28,7 @@ in
       default = [];
       description = "Default order for serif fonts";
     };
-    enableDefaultFonts = mkOption {
+    enableDefaultPackages = mkOption {
       type = types.bool;
       default = true;
     };
@@ -41,7 +41,7 @@ in
 
   config = mkIf cfg.enable {
     fonts = {
-      enableDefaultFonts = cfg.enableDefaultFonts;
+      enableDefaultPackages = cfg.enableDefaultPackages;
     
       fontconfig = {
         defaultFonts = {
@@ -51,7 +51,7 @@ in
         };
       };
 
-      fonts = with pkgs; [
+      packages = with pkgs; [
         (nerdfonts.override { fonts = cfg.installs; })
       ];
     };
