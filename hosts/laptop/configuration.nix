@@ -204,23 +204,26 @@
     editors = {
       enable = true;
       defaultEditor = "neovim";
-      androidStudio.enable = false;
-      emacs = {
-        enable = true;
-        doom.enable = true;
-      };
-      idea.enable = true;
+      # androidStudio.enable = true;
+      # emacs = {
+      #   enable = true;
+      #   doom.enable = true;
+      # };
+      # idea.enable = true;
       neovim = {
         enable = true;
         astro.enable = true;
       };
-      rider.enable = true;
+      # rider.enable = true;
       vscode.enable = true;
     };
     fonts = {
       enable = true;
       defaults = [ "FiraCode" ];
       installs = [ "FiraCode" ];
+    };
+    games = {
+      steam.enable = false;
     };
     general = {
       aws.enable = true;
@@ -234,7 +237,7 @@
       git.enable = true;
       lorri.enable = true;
       ngrok.enable = true;
-      pulumi.enable = true;
+      # pulumi.enable = false;
       # postman.enable = true;
     };
     shells = {

@@ -61,6 +61,7 @@ in
     };
 
     users.users.alissonfpmorais.packages = with pkgs; [
+      git-lfs
       gitFull
       lazygit
     ];

@@ -102,8 +102,8 @@ in
           nicfg = "sudo nano /etc/nixos/configuration.nix";
           nigbg = "sudo nix-collect-garbage --delete-older-than";
           niopt = "nixos-option";
-          nicup = "nix-channel --update";
-          nifku = "nix flake update";
+          nicup = "sudo nix-channel --update";
+          nifku = "sudo nix flake update";
           niupdt = "sudo nixos-rebuild switch";
         };
         zplug = {
@@ -147,6 +147,7 @@ in
       pciutils
       ripgrep
       rustc
+      steam-run
       tldr
       tree
       unzip
