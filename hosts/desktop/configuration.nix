@@ -2,9 +2,9 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, lib, pkgs, ... }:
+{ config, hyprland, lib, pkgs, ... }:
+
 {
-  # nix.package = pkgs.nixUnstable;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # nix.gc = {
@@ -12,13 +12,13 @@
   #   dates = "weekly";
   #   options = "--delete-older-than 30d";
   # };
-  
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  boot.loader.efi.efiSysMountPoint = "/boot";
 
-  networking.hostName = "afpmLaptop"; # Define your hostname.
+  networking.hostName = "afpmDesktop"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -49,9 +49,16 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  # Enable the GNOME Desktop Environment.
+  # Enable the Hyprland Compositor
   services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  programs.hyprland = {
+    enable = true;
+    # package = hyprland.packages."${pkgs.system}".hyprland;
+  };
+
+  # Enable the GNOME Desktop Environment.
+  # services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
@@ -87,19 +94,22 @@
 
   # Enable NVidia drivers
   services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.opengl.enable = true;
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
-  hardware.nvidia.modesetting.enable = true;
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+  hardware.nvidia = {
+    modesetting.enable = true;
+    nvidiaSettings = true;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.alissonfpmorais = {
     isNormalUser = true;
     description = "Alisson Morais";
-    extraGroups = [
-      "docker"
-      "networkmanager"
-      "wheel"
-    ];
+    extraGroups = [ "docker" "networkmanager" "wheel" ];
   };
 
   # Allow unfree packages
@@ -122,10 +132,10 @@
     127.0.0.1 mongo3
   '';
 
-  networking.networkmanager.plugins = [
-    # Specific revisions
-    pkgs.networkmanager-openvpn
-  ];
+  # networking.networkmanager.plugins = [
+  #   # Specific revisions
+  #   pkgs.networkmanager-openvpn
+  # ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -136,15 +146,14 @@
     doppler
     gnomeExtensions.pop-shell
     gnumake
+    kitty
     nodejs_20
     python311
     python311Packages.pip
     robo3t
+  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+  #  wget
   ];
-
-  # environment.shellInit = ''
-  #   export PATH="$PATH:$HOME/.config/emacs/bin"
-  # '';
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -159,9 +168,6 @@
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
-  # Enable emacs daemon
-  # services.emacs.enable = true;
-
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
@@ -174,7 +180,7 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.11"; # Did you read the comment?
+  system.stateVersion = "23.11"; # Did you read the comment?
 
   modules = {
     editors = {

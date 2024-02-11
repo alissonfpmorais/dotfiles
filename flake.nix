@@ -9,9 +9,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprland.url = "github:hyprwm/Hyprland";
   };
 
-  # outputs = { self, nixpkgs, nixpkgs-openvpn, nix, home-manager }@inputs:
+  # outputs = { self, nixpkgs, nixpkgs-openvpn, nix, home-manager, hyprland }@inputs:
   outputs = { nixpkgs, home-manager, ... }@args:
   let
     system = "x86_64-linux";
