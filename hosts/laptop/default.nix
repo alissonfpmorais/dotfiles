@@ -1,4 +1,4 @@
-{ home-manager, nixpkgs, system, ... }@inputs:
+{ home-manager, hyprland, nixpkgs, system, ... }@inputs:
 let
   hwConfig = ./hardware-configuration.nix;
   modulesConfig = ../../modules;
@@ -7,7 +7,7 @@ let
 in
 nixpkgs.lib.nixosSystem {
   inherit system;
-  # extraArgs = {};
+  extraArgs = { hyprland = hyprland; };
   modules = [
     hwConfig
     modulesConfig
