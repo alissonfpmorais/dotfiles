@@ -25,7 +25,10 @@
       #hyprctl monitors all
       #monitor=name,resolution,position,scale
       #monitor=DP-1,1920x1080@144,0x0,1
-      monitor = ",preferred,auto,1";
+      monitor = [
+        "eDP-1, preferred, auto, 1"
+        "HDMI-A-3, preferred, auto, 1, mirror, eDP-1"
+      ];
 
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more
 
