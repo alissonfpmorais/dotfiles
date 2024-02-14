@@ -9,6 +9,16 @@
       "ssh"
     ];
   };
+  # Ensure that both Hyprland and GTK desktop portals are loaded
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-hyprland
+
+      # Added in conjunction with Hyprland's desktop portal to make use file chooser
+      pkgs.xdg-desktop-portal-gtk
+    ];
+  };
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {

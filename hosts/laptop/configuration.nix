@@ -49,15 +49,23 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
+  # Enable GDM server
+  # services.xserver.displayManager.gdm.enable = true;
+
+  # Enable SDDM server
+  services.xserver.displayManager.sddm.enable = true;
+
+  # Enable gnome-keyring after login
+  security.pam.services.sddm.enableGnomeKeyring = true;
+  security.pam.services.login.enableGnomeKeyring = true;
+
   # Enable the Hyprland Compositor
-  services.xserver.displayManager.gdm.enable = true;
   programs.hyprland = {
     enable = true;
     package = hyprland.packages."${pkgs.system}".hyprland;
   };
 
   # Enable the GNOME Desktop Environment.
-  # services.xserver.displayManager.gdm.enable = true;
   # services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
@@ -145,13 +153,20 @@
     docker
     docker-compose
     doppler
-    gnomeExtensions.pop-shell
     gnumake
-    kitty
     nodejs_20
     python311
     python311Packages.pip
+
+    # May be removed
     robo3t
+
+    # Hyprland's default terminal
+    kitty
+
+    # Gnome-keyring
+    gnome.gnome-keyring
+    libsecret
   ];
 
   # environment.shellInit = ''
