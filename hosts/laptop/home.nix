@@ -39,7 +39,16 @@
       # source = ~/.config/hypr/myColors.conf
 
       # Some default env vars.
-      env = "XCURSOR_SIZE,32";
+      env = [
+        "XCURSOR_SIZE,32"
+
+        # Ensure cursor is loaded correctly
+        "WLR_NO_HARDWARE_CURSORS,1"
+
+        # Ensure keyring works properly
+        "GNOME_KEYRING_CONTROL,/run/user/1000/keyring"
+        "SSH_AUTH_SOCK,/run/user/1000/keyring/ssh"
+      ];
 
       # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
       input = {
