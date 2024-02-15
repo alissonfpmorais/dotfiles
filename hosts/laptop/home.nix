@@ -1,6 +1,11 @@
 { lib, pkgs, ... }:
 {
   home.stateVersion = "22.11";
+  home.file.".config/hypr/hyprpaper.conf".text = ''
+    preload = ${/home/alissonfpmorais/Pictures/starry_sky.jpg}
+    wallpaper = ,${/home/alissonfpmorais/Pictures/starry_sky.jpg}
+    ipc = off
+  '';
   services.gnome-keyring = {
     enable = true;
     components = [
@@ -36,14 +41,15 @@
       #monitor=name,resolution,position,scale
       #monitor=DP-1,1920x1080@144,0x0,1
       monitor = [
-        "eDP-1, preferred, auto, 1"
-        "HDMI-A-3, preferred, auto, 1, mirror, eDP-1"
+        "eDP-1,preferred,auto,1"
+        "HDMI-A-3,preferred,auto,1,mirror,eDP-1"
       ];
 
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more
 
       # Execute your favorite apps at launch
       # exec-once = waybar & hyprpaper & firefox
+      exec-once = "hyprpaper";
 
       # Source a file (multi-file configs)
       # source = ~/.config/hypr/myColors.conf

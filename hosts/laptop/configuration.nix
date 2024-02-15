@@ -164,6 +164,10 @@
     # Hyprland's default terminal
     kitty
 
+    # Hyprland's wallpaper
+    hyprlang
+    hyprpaper
+
     # Gnome-keyring
     gnome.gnome-keyring
     libsecret
