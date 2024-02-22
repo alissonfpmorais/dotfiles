@@ -54,6 +54,12 @@
 
   # Enable SDDM server
   services.xserver.displayManager.sddm.enable = true;
+  # services.xserver.displayManager.setupCommands=''
+  #   #!/bin/sh
+  #   # Xsetup - run as root before the login dialog appears
+  #   xrandr --output eDP-1 --mode 1920x1080
+  #   xrandr --output HDMI-A-3 --off
+  # '';
 
   # Enable gnome-keyring after login
   security.pam.services.sddm.enableGnomeKeyring = true;
@@ -246,6 +252,7 @@
       ngrok.enable = true;
       # pulumi.enable = false;
       # postman.enable = true;
+      zoxide.enable = true;
     };
     shells = {
       zsh = {

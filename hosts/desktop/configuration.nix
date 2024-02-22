@@ -221,6 +221,7 @@
       ngrok.enable = true;
       # pulumi.enable = false;
       # postman.enable = true;
+      zoxide.enable = true;
     };
     shells = {
       zsh = {

@@ -6,7 +6,8 @@
     ./git
     ./lorri
     ./ngrok
-    ./pulumi
     ./postman
+    ./pulumi
+    ./zoxide
   ];
 }
