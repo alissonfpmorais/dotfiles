@@ -172,18 +172,24 @@
         "$mainMod, mouse_up, workspace, e-1"
 
         # Custom binds
-        "$mainMod SHIFT, E, exec, code"
         "$mainMod SHIFT, B, exec, vivaldi"
-        "$mainMod SHIFT, N, exec, nmcli c up 6bc7eef3-6dde-483f-ab31-69189be41639"
+        "$mainMod SHIFT, D, exec, dbeaver"
+        "$mainMod SHIFT, E, exec, code"
+        "$mainMod SHIFT, F, exec, microsoft-edge"
         "$mainMod SHIFT, M, exec, nmcli c down 6bc7eef3-6dde-483f-ab31-69189be41639"
+        "$mainMod SHIFT, N, exec, nmcli c up 6bc7eef3-6dde-483f-ab31-69189be41639"
         "$mainMod ALT, H, workspace, r-1"
         "$mainMod ALT, J, workspace, empty"
         "$mainMod ALT, K, workspace, 1"
         "$mainMod ALT, L, workspace, r+1"
+        "$mainMod SHIFT, H, movetoworkspace, r-1"
+        "$mainMod SHIFT, L, movetoworkspace, r+1"
         "$mainMod ALT, left, workspace, r-1"
         "$mainMod ALT, down, workspace, empty"
         "$mainMod ALT, up, workspace, 1"
         "$mainMod ALT, right, workspace, r+1"
+        "$mainMod SHIFT, left, movetoworkspace, r-1"
+        "$mainMod SHIFT, right, movetoworkspace, r+1"
       ] ++ (
         builtins.concatLists (
           builtins.genList (
