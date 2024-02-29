@@ -115,7 +115,7 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  environment.variables = lib.recursiveUpdate (import ./job/envs.priv.nix) {};
+  environment.variables = lib.recursiveUpdate (import ./job/envs.priv.nix) { };
 
   # Enable docker
   virtualisation.docker = {
@@ -151,8 +151,8 @@
     python311
     python311Packages.pip
     robo3t
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -215,6 +215,9 @@
         edge.enable = true;
         firefox.enable = true;
         vivaldi.enable = true;
+      };
+      explorer = {
+        xplr.enable = true;
       };
       git.enable = true;
       lorri.enable = true;

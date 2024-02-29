@@ -12,7 +12,7 @@
   #   dates = "weekly";
   #   options = "--delete-older-than 30d";
   # };
-  
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -130,7 +130,7 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  environment.variables = lib.recursiveUpdate (import ./job/envs.priv.nix) {};
+  environment.variables = lib.recursiveUpdate (import ./job/envs.priv.nix) { };
 
   # Enable docker
   virtualisation.docker = {
@@ -161,6 +161,9 @@
     doppler
     gnumake
     nodejs_20
+    nix-search-cli
+    nixd
+    nixpkgs-fmt
     python311
     python311Packages.pip
 
@@ -246,6 +249,9 @@
         edge.enable = true;
         firefox.enable = true;
         vivaldi.enable = true;
+      };
+      explorer = {
+        xplr.enable = true;
       };
       git.enable = true;
       lorri.enable = true;

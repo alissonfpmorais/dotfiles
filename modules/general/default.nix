@@ -3,6 +3,7 @@
   imports = [
     ./aws
     ./browser
+    ./explorer
     ./git
     ./lorri
     ./ngrok
