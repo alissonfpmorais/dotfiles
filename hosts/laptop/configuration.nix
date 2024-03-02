@@ -228,7 +228,7 @@
       # idea.enable = true;
       neovim = {
         enable = true;
-        astro.enable = true;
+        nixvim.enable = true;
       };
       # rider.enable = true;
       vscode.enable = true;

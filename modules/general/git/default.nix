@@ -16,7 +16,7 @@ in
     };
     extraAliases = mkOption {
       type = types.attrs;
-      default = {};
+      default = { };
       description = "Extra aliases to add";
       example = {
         MY_ENV_VAR = "value";
@@ -38,32 +38,40 @@ in
 
   config = mkIf cfg.enable {
     home-manager.users.alissonfpmorais = {
-      programs.git = {
-        enable = true;
-        aliases = recursiveUpdate cfg.extraAliases {
-          apply-gitignore = "!git ls-files -ci --exclude-standard -z | xargs -0 git rm --cached";
-          lg1 = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all";
-          lg2 = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n'' %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'";
-          lg = "lg1";
-        };
-        diff-so-fancy.enable = true;
-        extraConfig = {
-          core = {
-            autocrlf = "input";
-            editor = "code --wait";
+      programs = {
+        git = {
+          enable = true;
+          aliases = recursiveUpdate cfg.extraAliases {
+            apply-gitignore = "!git ls-files -ci --exclude-standard -z | xargs -0 git rm --cached";
+            lg1 = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all";
+            lg2 = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n'' %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'";
+            lg = "lg1";
           };
-          init.defaultBranch = cfg.defaultBranch;
-          safe.directory = "/etc/nixos";
+          diff-so-fancy.enable = true;
+          extraConfig = {
+            core = {
+              autocrlf = "input";
+              editor = "code --wait";
+            };
+            init.defaultBranch = cfg.defaultBranch;
+            safe.directory = "/etc/nixos";
+          };
+          userEmail = cfg.userEmail;
+          userName = cfg.userName;
         };
-        userEmail = cfg.userEmail;
-        userName = cfg.userName;
+        lazygit = {
+          enable = true;
+          settings = {
+            os.edit = "floaterm";
+            # keybinding.universal.return = "<c-bs>";
+          };
+        };
       };
     };
 
     users.users.alissonfpmorais.packages = with pkgs; [
       git-lfs
       gitFull
-      lazygit
     ];
   };
 }

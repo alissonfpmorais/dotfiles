@@ -11,7 +11,7 @@ in
     defaultEditor = mkOption {
       type = types.bool;
       default = false;
-      description = "Use neovim as default editor";
+      description = "Use vscode as default editor";
     };
   };
 

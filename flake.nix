@@ -10,15 +10,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland.url = "github:hyprwm/Hyprland";
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # outputs = { self, nixpkgs, nixpkgs-openvpn, nix, home-manager, hyprland }@inputs:
   outputs = { nixpkgs, home-manager, ... }@args:
-  let
-    system = "x86_64-linux";
-    inputs = args // { inherit system; };
-  in
-  {
-    nixosConfigurations = import ./hosts inputs;
-  };
+    let
+      system = "x86_64-linux";
+      inputs = args // { inherit system; };
+    in
+    {
+      nixosConfigurations = import ./hosts inputs;
+    };
 }

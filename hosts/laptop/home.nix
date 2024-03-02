@@ -189,10 +189,6 @@
         "$mainMod CTRL, J, movewindow, d"
         "$mainMod CTRL, K, movewindow, u"
         "$mainMod CTRL, L, movewindow, r"
-        "$mainMod CTRL ALT, H, resizeactive, -10 0"
-        "$mainMod CTRL ALT, J, resizeactive, 0 10"
-        "$mainMod CTRL ALT, K, resizeactive, 0 -10"
-        "$mainMod CTRL ALT, L, resizeactive, 10 0"
 
         "$mainMod ALT, left, workspace, r-1"
         "$mainMod ALT, down, workspace, empty"
@@ -204,10 +200,6 @@
         "$mainMod CTRL, down, movewindow, d"
         "$mainMod CTRL, up, movewindow, u"
         "$mainMod CTRL, right, movewindow, r"
-        "$mainMod CTRL ALT, left, resizeactive, -10 0"
-        "$mainMod CTRL ALT, down, resizeactive, 0 10"
-        "$mainMod CTRL ALT, up, resizeactive, 0 -10"
-        "$mainMod CTRL ALT, right, resizeactive, 10 0"
       ] ++ (
         builtins.concatLists (
           builtins.genList
@@ -228,6 +220,22 @@
             10
         )
       );
+
+      binde = [
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+
+        "$mainMod CTRL ALT, H, resizeactive, -10 0"
+        "$mainMod CTRL ALT, J, resizeactive, 0 10"
+        "$mainMod CTRL ALT, K, resizeactive, 0 -10"
+        "$mainMod CTRL ALT, L, resizeactive, 10 0"
+
+        "$mainMod CTRL ALT, left, resizeactive, -10 0"
+        "$mainMod CTRL ALT, down, resizeactive, 0 10"
+        "$mainMod CTRL ALT, up, resizeactive, 0 -10"
+        "$mainMod CTRL ALT, right, resizeactive, 10 0"
+      ];
     };
   };
   # dconf.settings = {
