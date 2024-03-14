@@ -175,6 +175,7 @@
 
     # Hyprland's wallpaper
     hyprlang
+    # hyprlock
     hyprpaper
 
     # Gnome-keyring
@@ -258,6 +259,7 @@
       ngrok.enable = true;
       # pulumi.enable = false;
       # postman.enable = true;
+      screenshot.enable = true;
       zoxide.enable = true;
     };
     shells = {

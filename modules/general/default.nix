@@ -9,6 +9,7 @@
     ./ngrok
     ./postman
     ./pulumi
+    ./screenshot
     ./zoxide
   ];
 }

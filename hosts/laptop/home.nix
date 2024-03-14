@@ -6,6 +6,73 @@
     wallpaper = ,${/home/alissonfpmorais/Pictures/starry_sky.jpg}
     ipc = off
   '';
+  home.file.".config/hypr/hyprlock.conf".text = ''
+    source = ~/.cache/wal/colors-hyprland.conf
+
+    # BACKGROUND
+    background {
+        monitor =
+        path = ~${/home/alissonfpmorais/Pictures/starry_sky.jpg}
+        blur_passes = 3
+        contrast = 0.8916
+        brightness = 0.8172
+        vibrancy = 0.1696
+        vibrancy_darkness = 0.0
+    }
+  
+    # GENERAL
+    general {
+        no_fade_in = false
+        grace = 0
+        disable_loading_bar = true
+    }
+  
+    # INPUT FIELD
+    input-field {
+        monitor =
+        size = 250, 60
+        outline_thickness = 2
+        dots_size = 0.2 # Scale of input-field height, 0.2 - 0.8
+        dots_spacing = 0.2 # Scale of dots' absolute size, 0.0 - 1.0
+        dots_center = true
+        outer_color = rgba(0, 0, 0, 0)
+        inner_color = rgba(0, 0, 0, 0.5)
+        font_color = rgb(200, 200, 200)
+        fade_on_empty = false
+        # font_family = FiraCode Mono Nerd Font Mono
+        placeholder_text = <i><span foreground="##cdd6f4">Input Password...</span></i>
+        hide_input = false
+        position = 0, -120
+        halign = center
+        valign = center
+    }
+  
+    # TIME
+    label {
+        monitor =
+        text = cmd[update:1000] echo "$(date +"%-I:%M%p")"
+        color = $foreground
+        #color = rgba(255, 255, 255, 0.6)
+        font_size = 120
+        # font_family = FiraCode Mono Nerd Font Mono ExtraBold
+        position = 0, -300
+        halign = center
+        valign = top
+    }
+  
+    # USER
+    label {
+        monitor =
+        text = Hi there, $USER
+        color = $foreground
+        #color = rgba(255, 255, 255, 0.6)
+        font_size = 25
+        # font_family = FiraCode Mono Nerd Font Mono
+        position = 0, -40
+        halign = center
+        valign = center
+    }
+  '';
   services.gnome-keyring = {
     enable = true;
     components = [
@@ -172,6 +239,7 @@
         "$mainMod, mouse_up, workspace, e-1"
 
         # Custom binds
+        "$mainMod, code:107, exec, grim -g \"$(slurp)\" - | swappy -f -"
         "$mainMod SHIFT, B, exec, vivaldi"
         "$mainMod SHIFT, D, exec, dbeaver"
         "$mainMod SHIFT, E, exec, code"
@@ -222,10 +290,6 @@
       );
 
       binde = [
-        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-
         "$mainMod CTRL ALT, H, resizeactive, -10 0"
         "$mainMod CTRL ALT, J, resizeactive, 0 10"
         "$mainMod CTRL ALT, K, resizeactive, 0 -10"
@@ -235,6 +299,13 @@
         "$mainMod CTRL ALT, down, resizeactive, 0 10"
         "$mainMod CTRL ALT, up, resizeactive, 0 -10"
         "$mainMod CTRL ALT, right, resizeactive, 10 0"
+      ];
+      bindel = [
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+      ];
+      bindl = [
+        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
       ];
     };
   };
