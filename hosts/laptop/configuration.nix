@@ -161,6 +161,7 @@
     docker-compose
     doppler
     gnumake
+    htop
     nodejs_20
     nix-search-cli
     nixd
