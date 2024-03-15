@@ -160,6 +160,7 @@
     docker-compose
     doppler
     gnumake
+    htop
     nodejs_20
     nix-search-cli
     nixd
@@ -171,7 +172,7 @@
     robo3t
 
     # Hyprland's default terminal
-    kitty
+    # kitty
 
     # Hyprland's wallpaper
     hyprlang

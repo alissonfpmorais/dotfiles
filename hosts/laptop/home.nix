@@ -360,6 +360,13 @@
   #   #   name="Open emacs client";
   #   # };
   # };
+  programs.kitty = {
+    enable = true;
+    theme = "Gruvbox Dark";
+    settings = {
+      hide_window_decorations = "yes";
+    };
+  };
   # services = {
   #   emacs = {
   #     client.arguments = [
