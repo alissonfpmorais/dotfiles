@@ -2,7 +2,8 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, hyprland, lib, pkgs, ... }:
+# { config, hyprland, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -51,10 +52,10 @@
 
   # Enable the Hyprland Compositor
   services.xserver.displayManager.gdm.enable = true;
-  programs.hyprland = {
-    enable = true;
-    # package = hyprland.packages."${pkgs.system}".hyprland;
-  };
+  # programs.hyprland = {
+  #   enable = true;
+  #   # package = hyprland.packages."${pkgs.system}".hyprland;
+  # };
 
   # Enable the GNOME Desktop Environment.
   # services.xserver.displayManager.gdm.enable = true;

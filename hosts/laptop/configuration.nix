@@ -2,7 +2,8 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, hyprland, lib, pkgs, ... }:
+# { config, hyprland, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 {
   # nix.package = pkgs.nixUnstable;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -50,10 +51,10 @@
   services.xserver.enable = true;
 
   # Enable GDM server
-  # services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
 
   # Enable SDDM server
-  services.xserver.displayManager.sddm.enable = true;
+  # services.xserver.displayManager.sddm.enable = true;
   # services.xserver.displayManager.setupCommands=''
   #   #!/bin/sh
   #   # Xsetup - run as root before the login dialog appears
@@ -62,17 +63,17 @@
   # '';
 
   # Enable gnome-keyring after login
-  security.pam.services.sddm.enableGnomeKeyring = true;
+  # security.pam.services.sddm.enableGnomeKeyring = true;
   security.pam.services.login.enableGnomeKeyring = true;
 
   # Enable the Hyprland Compositor
-  programs.hyprland = {
-    enable = true;
-    package = hyprland.packages."${pkgs.system}".hyprland;
-  };
+  # programs.hyprland = {
+  #   enable = true;
+  #   package = hyprland.packages."${pkgs.system}".hyprland;
+  # };
 
   # Enable the GNOME Desktop Environment.
-  # services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
@@ -171,16 +172,16 @@
     robo3t
 
     # Hyprland's default terminal
-    kitty
+    # kitty
 
     # Hyprland's wallpaper
-    hyprlang
+    # hyprlang
     # hyprlock
-    hyprpaper
+    # hyprpaper
 
     # Gnome-keyring
-    gnome.gnome-keyring
-    libsecret
+    # gnome.gnome-keyring
+    # libsecret
   ];
 
   # environment.shellInit = ''

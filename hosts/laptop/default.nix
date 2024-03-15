@@ -1,4 +1,5 @@
-{ home-manager, hyprland, nixpkgs, nixvim, system, ... }@inputs:
+# { home-manager, hyprland, nixpkgs, nixvim, system, ... }@inputs:
+{ home-manager, nixpkgs, nixvim, system, ... }@inputs:
 let
   hwConfig = ./hardware-configuration.nix;
   modulesConfig = ../../modules;
@@ -8,7 +9,7 @@ in
 nixpkgs.lib.nixosSystem {
   inherit system;
   extraArgs = {
-    hyprland = hyprland;
+    # hyprland = hyprland;
     nixvim = nixvim;
   };
   modules = [
