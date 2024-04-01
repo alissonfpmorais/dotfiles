@@ -44,6 +44,19 @@ in
 
         colorschemes.gruvbox.enable = true;
 
+				# autoCmd = [
+				# 	{
+				# 		event = [ "BufWritePre" ];
+				# 		pattern = [
+				# 			"*.tsx"
+				# 			"*.ts"
+				# 			"*.jsx"
+				# 			"*.js"
+				# 		];
+				# 		command = "npm run lint";
+				# 	}
+				# ];
+
         extraPlugins = with pkgs.vimPlugins; [
           lualine-lsp-progress
           vim-dadbod
@@ -71,6 +84,33 @@ in
         };
 
         plugins = {
+          cmp = {
+            enable = true;
+            autoEnableSources = true;
+            settings = {
+              mapping = {
+                "<C-Space>" = "cmp.mapping.complete()";
+                "<C-d>" = "cmp.mapping.scroll_docs(-4)";
+                "<C-e>" = "cmp.mapping.close()";
+                "<C-f>" = "cmp.mapping.scroll_docs(4)";
+                "<CR>" = "cmp.mapping.confirm({ select = true })";
+                "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+                "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+              };
+              performance = {
+                fetching_timeout = 300;
+              };
+              snippet.expand = "function(args) require('luasnip').lsp_expand(args.body) end";
+              sources = [
+                { name = "nvim_lsp"; }
+                { name = "nvim_lsp_document_symbol"; }
+                { name = "nvim_lsp_signature_help"; }
+                { name = "nvim_lua"; }
+                { name = "path"; }
+                # { name = "buffer"; }
+              ];
+            };
+          };
           cmp-buffer.enable = true;
           cmp-cmdline.enable = true;
           cmp-nvim-lsp.enable = true;
@@ -104,6 +144,8 @@ in
                 "<leader>gd" = "definition";
                 "<leader>gi" = "implementation";
                 "<leader>gt" = "type_definition";
+								"<leader>rn" = "rename";
+								"<leader>ca" = "code_action";
               };
               silent = true;
             };
@@ -115,12 +157,14 @@ in
                 dockerls.enable = true;
                 elmls.enable = true;
                 elixirls.enable = true;
+								# eslint.enable = true;
                 gleam.enable = true;
+								gopls.enable = true;
                 graphql.enable = true;
                 html.enable = true;
                 jsonls.enable = true;
                 lua-ls.enable = true;
-                nixd.enable = true;
+                # nixd.enable = true;
                 tailwindcss.enable = true;
                 tsserver.enable = true;
                 yamlls.enable = true;
@@ -145,45 +189,10 @@ in
           notify = {
             enable = true;
           };
-          nvim-cmp = {
-            enable = true;
-            autoEnableSources = true;
-            mapping = {
-              "<C-Space>" = "cmp.mapping.complete()";
-              "<C-d>" = "cmp.mapping.scroll_docs(-4)";
-              "<C-e>" = "cmp.mapping.close()";
-              "<C-f>" = "cmp.mapping.scroll_docs(4)";
-              "<CR>" = "cmp.mapping.confirm({ select = true })";
-              "<S-Tab>" = {
-                action = "cmp.mapping.select_prev_item()";
-                modes = [
-                  "i"
-                  "s"
-                ];
-              };
-              "<Tab>" = {
-                action = "cmp.mapping.select_next_item()";
-                modes = [
-                  "i"
-                  "s"
-                ];
-              };
-            };
-            performance = {
-              fetchingTimeout = 300;
-            };
-            snippet.expand = "luasnip";
-            sources = [
-              { name = "nvim_lsp"; }
-              { name = "nvim_lsp_document_symbol"; }
-              { name = "nvim_lsp_signature_help"; }
-              { name = "nvim_lua"; }
-              { name = "path"; }
-              # { name = "buffer"; }
-            ];
-          };
           nvim-lightbulb.enable = true;
-          oil.enable = true;
+          oil = {
+						enable = true;
+					};
           project-nvim.enable = true;
           rainbow-delimiters.enable = true;
           rest.enable = true;
@@ -195,7 +204,7 @@ in
                 { icons_enabled = true; name = "lsp_progress"; }
               ];
               lualine_x = [
-                { icons_enabled = false; name = "datetime"; }
+                # { icons_enabled = false; name = "datetime"; }
                 { icons_enabled = false; name = "encoding"; }
                 { icons_enabled = true; name = "fileformat"; }
                 { icons_enabled = true; name = "filetype"; }
@@ -295,6 +304,10 @@ in
                     ];
                   };
                 };
+                "-" = [
+                  "<cmd>Oil<CR>"
+                  "Open parent directory"
+                ];
               };
           };
           wilder = {

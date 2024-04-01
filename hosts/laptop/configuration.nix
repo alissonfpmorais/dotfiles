@@ -5,7 +5,17 @@
 { config, hyprland, lib, pkgs, ... }:
 {
   # nix.package = pkgs.nixUnstable;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings = {
+		experimental-features = [ "nix-command" "flakes" ];
+  	substituters = [
+			"https://hyprland.cachix.org"
+			"https://nix-community.cachix.org"
+		];
+  	trusted-public-keys = [
+			"hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+			"nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+		];
+  };
 
   # nix.gc = {
   #   automatic = true;
@@ -127,8 +137,14 @@
     ];
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    # Allow unfree packages
+    allowUnfree = true;
+
+    # Allow insecure packages
+    # permittedInsecurePackages = [
+    # ];
+  };
 
   environment.variables = lib.recursiveUpdate (import ./job/envs.priv.nix) { };
 
@@ -163,7 +179,7 @@
     htop
     nodejs_20
     nix-search-cli
-    nixd
+    # nixd
     nixpkgs-fmt
     python311
     python311Packages.pip

@@ -2,8 +2,8 @@
 {
   home.stateVersion = "22.11";
   home.file.".config/hypr/hyprpaper.conf".text = ''
-    preload = ${/home/alissonfpmorais/Pictures/starry_sky.jpg}
-    wallpaper = ,${/home/alissonfpmorais/Pictures/starry_sky.jpg}
+    preload = ${/home/alissonfpmorais/Pictures/wallpaper3.jpg}
+    wallpaper = ,${/home/alissonfpmorais/Pictures/wallpaper3.jpg}
     ipc = off
   '';
   home.file.".config/hypr/hyprlock.conf".text = ''
@@ -12,7 +12,7 @@
     # BACKGROUND
     background {
         monitor =
-        path = ~${/home/alissonfpmorais/Pictures/starry_sky.jpg}
+        path = ~${/home/alissonfpmorais/Pictures/wallpaper3.jpg}
         blur_passes = 3
         contrast = 0.8916
         brightness = 0.8172
@@ -212,7 +212,8 @@
 
       # Example per-device config
       # See https://wiki.hyprland.org/Configuring/Keywords/#per-device-input-configs for more
-      "device:epic-mouse-v1" = {
+      device = {
+				name = "epic-mouse-v1";
         sensitivity = "-0.5";
       };
 
@@ -360,11 +361,47 @@
   #   #   name="Open emacs client";
   #   # };
   # };
-  programs.kitty = {
-    enable = true;
-    theme = "Gruvbox Dark";
-    settings = {
-      hide_window_decorations = "yes";
+  programs = {
+    kitty = {
+      enable = true;
+      theme = "Gruvbox Dark";
+      settings = {
+        hide_window_decorations = "yes";
+      };
+    };
+    tmux = {
+      enable = true;
+      clock24 = true;
+      extraConfig = ''
+        bind-key h select-pane -L
+        bind-key j select-pane -D
+        bind-key k select-pane -U
+        bind-key l select-pane -R
+
+        set-option -g status-position top
+      '';
+      historyLimit = 10000;
+      keyMode = "vi";
+      mouse = true;
+      prefix = "C-s";
+      shell = "${pkgs.zsh}/bin/zsh";
+      plugins = with pkgs; [
+        tmuxPlugins.battery
+        tmuxPlugins.open
+        tmuxPlugins.pain-control
+        tmuxPlugins.gruvbox
+        {
+          plugin = tmuxPlugins.resurrect;
+          extraConfig = "set -g @resurrect-strategy-nvim 'session'";
+        }
+        {
+          plugin = tmuxPlugins.continuum;
+          extraConfig = ''
+            set -g @continuum-restore 'on'
+            set -g @continuum-save-interval '60' # minutes
+          '';
+        }
+      ];
     };
   };
   # services = {
@@ -375,7 +412,7 @@
   #     ];
   #     client.enable = true;
   #     enable = true;
-  #     socketActivation.enable = true;
+  #     socketactivation.enable = true;
   #   };
   # };
 }
