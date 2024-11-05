@@ -171,7 +171,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    dbeaver
+    dbeaver-bin
     docker
     docker-compose
     doppler
