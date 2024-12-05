@@ -144,6 +144,10 @@
       enable = true;
       defaults = [ "FiraCode" ];
       installs = [ "FiraCode" ];
+      # defaults = [ "FiraMono" ];
+      # installs = [ "FiraMono" ];
+      # defaults = [ "JetBrainsMono" ];
+      # installs = [ "JetBrainsMono" ];
     };
     games = {
       steam.enable = false;

@@ -33,7 +33,10 @@ in
 
     environment.shells = [ pkgs.zsh ];
 
+    programs.zsh.enable = true;
+
     home-manager.users.alissonfpmorais = {
+      # Setup zsh
       programs.zsh = {
         enable = true;
         enableAutosuggestions = true;
@@ -123,20 +126,22 @@ in
             { name = "plugins/gitignore";           tags = [from:oh-my-zsh]; }
             { name = "plugins/helm";                tags = [from:oh-my-zsh]; }
             { name = "plugins/kubectl";             tags = [from:oh-my-zsh]; }
-            { name = "plugins/tmux";                tags = [from:oh-my-zsh]; }
+            # { name = "plugins/tmux";                tags = [from:oh-my-zsh]; }
             { name = "plugins/zoxide";              tags = [from:oh-my-zsh]; }
 
             # Custom
             { name = "chisui/zsh-nix-shell"; }
             { name = "kutsan/zsh-system-clipboard"; }
             { name = "nix-community/nix-zsh-completions"; }
-            { name = "romkatv/powerlevel10k";       tags = [ as:theme depth:1 ]; }
+            # { name = "romkatv/powerlevel10k";       tags = [ as:theme depth:1 ]; }
           ];
         };
       };
-    };
 
-    programs.zsh.enable = true;
+      # Setup starship
+      home.file.".config/starship.toml".source = ./starship.toml;
+      programs.starship.enable = true;
+    };
 
     users.defaultUserShell = pkgs.zsh;
 

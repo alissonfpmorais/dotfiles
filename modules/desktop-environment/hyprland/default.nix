@@ -8,6 +8,9 @@ let
     mkdir -p $out
     cp ${./wallpaper1.jpg} $out/wallpaper1.jpg
   '';
+  # iconsSetup = pkgs.runCommand "icons" {} ''
+  #   cp -R cursor-themes ~/.local/share/icons
+  # '';
 in
 {
   options.modules.de.hyprland = {
@@ -15,15 +18,22 @@ in
   };
 
   config = mkIf cfg.enable {
+    services.xserver.displayManager.sddm = {
+      enable = true;
+      wayland.enable = true;
+    };
+    
     # Hint electron apps to use wayland:
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
     environment.systemPackages = [
+      pkgs.hyprcursor
       pkgs.hyprlang
       # pkgs.hyprlock
       pkgs.hyprpaper
       pkgs.hyprpolkitagent
       pkgs.libsForQt5.qt5.qtwayland
+      pkgs.nwg-look
     ];
 
     programs.hyprland = {
@@ -40,6 +50,11 @@ in
         wallpaper = ,${wallpaperPath}/wallpaper1.jpg
         ipc = off
       '';
+
+      home.file.".local/share/icons" = {
+        source = ./cursor-themes;
+        recursive = true;
+      };
 
       xdg.portal = {
         enable = true;
@@ -77,6 +92,7 @@ in
           exec-once = [
             "hyprpaper"
             "systemctl --user start hyprpolkitagent"
+            "hyprctl setcursor "
           ];
 
           # Source a file (multi-file configs)
@@ -92,6 +108,10 @@ in
             # Ensure keyring works properly
             # "GNOME_KEYRING_CONTROL,/run/user/1000/keyring"
             # "SSH_AUTH_SOCK,/run/user/1000/keyring/ssh"
+
+            # Setup cursor themes
+            "HYPRCURSOR_THEME,Bibata-Modern-Ice"
+            "HYPRCURSOR_SIZE,24"
           ];
 
           # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
@@ -132,10 +152,12 @@ in
             # blur_passes = 1
             # blur_new_optimizations = true
 
-            drop_shadow = true;
-            shadow_range = 4;
-            shadow_render_power = 3;
-            "col.shadow" = "rgba(1a1a1aee)";
+            shadow = {
+              enabled = true;
+              color = "rgba(1a1a1aee)";
+              range = 4;
+              render_power = 3;
+            };
           };
 
           animations = {
@@ -159,11 +181,6 @@ in
             # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
             pseudotile = true; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
             preserve_split = true; # you probably want this
-          };
-
-          master = {
-            # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-            new_is_master = true;
           };
 
           gestures = {
