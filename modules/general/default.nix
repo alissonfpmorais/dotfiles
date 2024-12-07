@@ -9,6 +9,7 @@
     ./kitty
     ./lorri
     ./ngrok
+    ./nix-tooling
     ./pulumi
     ./screenshot
     ./tmux

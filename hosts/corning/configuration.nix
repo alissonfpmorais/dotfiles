@@ -169,6 +169,7 @@
       kitty.enable = true;
       lorri.enable = false;
       ngrok.enable = true;
+      nix-tooling.enable = true;
       pulumi.enable = true;
       screenshot.enable = true;
       tmux.enable = false;
