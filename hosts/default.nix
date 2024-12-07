@@ -1,21 +1,16 @@
 {
-  ags,
   home-manager,
-  hyprland,
   nixpkgs,
   system,
   ...
-}:
+}@inputs:
 let
   modulesCfg = ../modules;
   nixCfg =
     systemCfg: hwCfg:
     nixpkgs.lib.nixosSystem {
       inherit system;
-      extraArgs = {
-        ags = ags;
-        hyprland = hyprland;
-      };
+      extraArgs = inputs;
       modules = [
         hwCfg
         modulesCfg
@@ -24,7 +19,7 @@ let
         {
           home-manager.useUserPackages = true;
           home-manager.users.alissonfpmorais =
-            { lib, pkgs, ... }:
+            { ... }:
             {
               home.stateVersion = "22.11";
             };

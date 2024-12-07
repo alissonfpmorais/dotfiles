@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  nixpkgs,
   pkgs,
   ...
 }:
@@ -16,7 +17,10 @@ in
   };
 
   config = mkIf cfg.enable {
+    nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
+
     users.users.alissonfpmorais.packages = with pkgs; [
+      nixd
       nixfmt-rfc-style
     ];
   };
