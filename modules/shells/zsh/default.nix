@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 
@@ -10,7 +15,7 @@ in
     enable = mkEnableOption "Zsh shell";
     extraAliases = mkOption {
       type = types.attrs;
-      default = {};
+      default = { };
       description = "Extra aliases to add";
       example = {
         MY_ENV_VAR = "value";
@@ -73,7 +78,7 @@ in
           bindkey '^[[1;5C' forward-word                                  #
           bindkey '^H' backward-kill-word                                 # delete previous word with ctrl+backspace
           bindkey '^[[Z' undo                                             # Shift+tab undo last action
-          
+
           ## Theming section
           autoload -U colors
           colors
@@ -114,20 +119,59 @@ in
           enable = true;
           plugins = [
             # Oh-My-ZSH
-            { name = "plugins/aws";                 tags = [from:oh-my-zsh]; }
-            { name = "plugins/colored-man-pages";   tags = [from:oh-my-zsh]; }
-            { name = "plugins/colorize";            tags = [from:oh-my-zsh]; }
-            { name = "plugins/command-not-found";   tags = [from:oh-my-zsh]; }
-            { name = "plugins/cp";                  tags = [from:oh-my-zsh]; }
-            { name = "plugins/docker";              tags = [from:oh-my-zsh]; }
-            { name = "plugins/fzf";                 tags = [from:oh-my-zsh]; }
-            { name = "plugins/gh";                  tags = [from:oh-my-zsh]; }
-            { name = "plugins/git";                 tags = [from:oh-my-zsh]; }
-            { name = "plugins/gitignore";           tags = [from:oh-my-zsh]; }
-            { name = "plugins/helm";                tags = [from:oh-my-zsh]; }
-            { name = "plugins/kubectl";             tags = [from:oh-my-zsh]; }
+            {
+              name = "plugins/aws";
+              tags = [ "from:oh-my-zsh" ];
+            }
+            {
+              name = "plugins/colored-man-pages";
+              tags = [ "from:oh-my-zsh" ];
+            }
+            {
+              name = "plugins/colorize";
+              tags = [ "from:oh-my-zsh" ];
+            }
+            {
+              name = "plugins/command-not-found";
+              tags = [ "from:oh-my-zsh" ];
+            }
+            {
+              name = "plugins/cp";
+              tags = [ "from:oh-my-zsh" ];
+            }
+            {
+              name = "plugins/docker";
+              tags = [ "from:oh-my-zsh" ];
+            }
+            {
+              name = "plugins/fzf";
+              tags = [ "from:oh-my-zsh" ];
+            }
+            {
+              name = "plugins/gh";
+              tags = [ "from:oh-my-zsh" ];
+            }
+            {
+              name = "plugins/git";
+              tags = [ "from:oh-my-zsh" ];
+            }
+            {
+              name = "plugins/gitignore";
+              tags = [ "from:oh-my-zsh" ];
+            }
+            {
+              name = "plugins/helm";
+              tags = [ "from:oh-my-zsh" ];
+            }
+            {
+              name = "plugins/kubectl";
+              tags = [ "from:oh-my-zsh" ];
+            }
             # { name = "plugins/tmux";                tags = [from:oh-my-zsh]; }
-            { name = "plugins/zoxide";              tags = [from:oh-my-zsh]; }
+            {
+              name = "plugins/zoxide";
+              tags = [ "from:oh-my-zsh" ];
+            }
 
             # Custom
             { name = "chisui/zsh-nix-shell"; }

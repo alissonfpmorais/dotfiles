@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 
@@ -10,22 +15,22 @@ in
     enable = mkEnableOption "Enable shell fonts";
     defaults = mkOption {
       type = with types; listOf str;
-      default = [];
+      default = [ ];
       description = "Default order for all font types";
     };
     defaultMonospace = mkOption {
       type = with types; listOf str;
-      default = [];
+      default = [ ];
       description = "Default order for monospace fonts";
     };
     defaultSansSerif = mkOption {
       type = with types; listOf str;
-      default = [];
+      default = [ ];
       description = "Default order for sans serif fonts";
     };
     defaultSerif = mkOption {
       type = with types; listOf str;
-      default = [];
+      default = [ ];
       description = "Default order for serif fonts";
     };
     enableDefaultPackages = mkOption {
@@ -34,7 +39,7 @@ in
     };
     installs = mkOption {
       type = with types; listOf str;
-      default = [];
+      default = [ ];
       description = "Fonts to install";
     };
   };
@@ -42,12 +47,12 @@ in
   config = mkIf cfg.enable {
     fonts = {
       enableDefaultPackages = cfg.enableDefaultPackages;
-    
+
       fontconfig = {
         defaultFonts = {
-          monospace = if cfg.defaultMonospace != [] then cfg.defaultMonospace else cfg.defaults;
-          sansSerif = if cfg.defaultSansSerif != [] then cfg.defaultSansSerif else cfg.defaults;
-          serif = if cfg.defaultSerif != [] then cfg.defaultSerif else cfg.defaults;
+          monospace = if cfg.defaultMonospace != [ ] then cfg.defaultMonospace else cfg.defaults;
+          sansSerif = if cfg.defaultSansSerif != [ ] then cfg.defaultSansSerif else cfg.defaults;
+          serif = if cfg.defaultSerif != [ ] then cfg.defaultSerif else cfg.defaults;
         };
       };
 

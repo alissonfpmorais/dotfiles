@@ -1,17 +1,23 @@
-{ config, hyprland, lib, pkgs, ... }:
+{
+  config,
+  hyprland,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 
 let
   cfg = config.modules.de.hyprland;
-  wallpaperPath = pkgs.runCommand "wallpaper" {} ''
+  wallpaperPath = pkgs.runCommand "wallpaper" { } ''
     mkdir -p $out
     cp ${./wallpaper1.jpg} $out/wallpaper1.jpg
   '';
-  # iconsSetup = pkgs.runCommand "icons" {} ''
-  #   cp -R cursor-themes ~/.local/share/icons
-  # '';
 in
+# iconsSetup = pkgs.runCommand "icons" {} ''
+#   cp -R cursor-themes ~/.local/share/icons
+# '';
 {
   options.modules.de.hyprland = {
     enable = mkEnableOption "Enable Hyprland (and a bunch of other stuff) to work as a DE";
@@ -22,7 +28,7 @@ in
       enable = true;
       wayland.enable = true;
     };
-    
+
     # Hint electron apps to use wayland:
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
@@ -196,77 +202,75 @@ in
           };
 
           "$mainMod" = "SUPER";
-          bind = [
-            # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-            "$mainMod, Q, exec, kitty"
-            "$mainMod, C, killactive,"
-            "$mainMod, M, exit,"
-            "$mainMod, E, exec, dolphin"
-            "$mainMod, V, togglefloating,"
-            "$mainMod, R, exec, wofi --show drun"
-            "$mainMod, P, pseudo," # dwindle
-            "$mainMod, J, togglesplit," # dwindle
+          bind =
+            [
+              # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
+              "$mainMod, Q, exec, kitty"
+              "$mainMod, C, killactive,"
+              "$mainMod, M, exit,"
+              "$mainMod, E, exec, dolphin"
+              "$mainMod, V, togglefloating,"
+              "$mainMod, R, exec, wofi --show drun"
+              "$mainMod, P, pseudo," # dwindle
+              "$mainMod, J, togglesplit," # dwindle
 
-            # Move focus with mainMod + arrow keys
-            "$mainMod, left, movefocus, l"
-            "$mainMod, right, movefocus, r"
-            "$mainMod, up, movefocus, u"
-            "$mainMod, down, movefocus, d"
+              # Move focus with mainMod + arrow keys
+              "$mainMod, left, movefocus, l"
+              "$mainMod, right, movefocus, r"
+              "$mainMod, up, movefocus, u"
+              "$mainMod, down, movefocus, d"
 
-            # Scroll through existing workspaces with mainMod + scroll
-            "$mainMod, mouse_down, workspace, e+1"
-            "$mainMod, mouse_up, workspace, e-1"
+              # Scroll through existing workspaces with mainMod + scroll
+              "$mainMod, mouse_down, workspace, e+1"
+              "$mainMod, mouse_up, workspace, e-1"
 
-            # Custom binds
-            "$mainMod, code:107, exec, grim -g \"$(slurp)\" - | swappy -f -"
-            "$mainMod SHIFT, B, exec, vivaldi"
-            "$mainMod SHIFT, D, exec, dbeaver"
-            "$mainMod SHIFT, E, exec, code"
-            "$mainMod SHIFT, F, exec, microsoft-edge"
-            "$mainMod SHIFT, M, exec, nmcli c down 6bc7eef3-6dde-483f-ab31-69189be41639"
-            "$mainMod SHIFT, N, exec, nmcli c up 6bc7eef3-6dde-483f-ab31-69189be41639"
+              # Custom binds
+              "$mainMod, code:107, exec, grim -g \"$(slurp)\" - | swappy -f -"
+              "$mainMod SHIFT, B, exec, vivaldi"
+              "$mainMod SHIFT, D, exec, dbeaver"
+              "$mainMod SHIFT, E, exec, code"
+              "$mainMod SHIFT, F, exec, microsoft-edge"
+              "$mainMod SHIFT, M, exec, nmcli c down 6bc7eef3-6dde-483f-ab31-69189be41639"
+              "$mainMod SHIFT, N, exec, nmcli c up 6bc7eef3-6dde-483f-ab31-69189be41639"
 
-            "$mainMod ALT, H, workspace, r-1"
-            "$mainMod ALT, J, workspace, empty"
-            "$mainMod ALT, K, workspace, 1"
-            "$mainMod ALT, L, workspace, r+1"
-            "$mainMod SHIFT, H, movetoworkspace, r-1"
-            "$mainMod SHIFT, L, movetoworkspace, r+1"
-            "$mainMod CTRL, H, movewindow, l"
-            "$mainMod CTRL, J, movewindow, d"
-            "$mainMod CTRL, K, movewindow, u"
-            "$mainMod CTRL, L, movewindow, r"
+              "$mainMod ALT, H, workspace, r-1"
+              "$mainMod ALT, J, workspace, empty"
+              "$mainMod ALT, K, workspace, 1"
+              "$mainMod ALT, L, workspace, r+1"
+              "$mainMod SHIFT, H, movetoworkspace, r-1"
+              "$mainMod SHIFT, L, movetoworkspace, r+1"
+              "$mainMod CTRL, H, movewindow, l"
+              "$mainMod CTRL, J, movewindow, d"
+              "$mainMod CTRL, K, movewindow, u"
+              "$mainMod CTRL, L, movewindow, r"
 
-            "$mainMod ALT, left, workspace, r-1"
-            "$mainMod ALT, down, workspace, empty"
-            "$mainMod ALT, up, workspace, 1"
-            "$mainMod ALT, right, workspace, r+1"
-            "$mainMod SHIFT, left, movetoworkspace, r-1"
-            "$mainMod SHIFT, right, movetoworkspace, r+1"
-            "$mainMod CTRL, left, movewindow, l"
-            "$mainMod CTRL, down, movewindow, d"
-            "$mainMod CTRL, up, movewindow, u"
-            "$mainMod CTRL, right, movewindow, r"
-          ] ++ (
-            builtins.concatLists (
-              builtins.genList
-                (
-                  x:
-                  let
-                    ws =
-                      let
-                        c = (x + 1) / 10;
-                      in
-                      builtins.toString (x + 1 - (c * 10));
-                  in
-                  [
-                    "$mainMod, ${ws}, workspace, ${toString (x + 1)}"
-                    "$mainMod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
-                  ]
-                )
-                10
-            )
-          );
+              "$mainMod ALT, left, workspace, r-1"
+              "$mainMod ALT, down, workspace, empty"
+              "$mainMod ALT, up, workspace, 1"
+              "$mainMod ALT, right, workspace, r+1"
+              "$mainMod SHIFT, left, movetoworkspace, r-1"
+              "$mainMod SHIFT, right, movetoworkspace, r+1"
+              "$mainMod CTRL, left, movewindow, l"
+              "$mainMod CTRL, down, movewindow, d"
+              "$mainMod CTRL, up, movewindow, u"
+              "$mainMod CTRL, right, movewindow, r"
+            ]
+            ++ (builtins.concatLists (
+              builtins.genList (
+                x:
+                let
+                  ws =
+                    let
+                      c = (x + 1) / 10;
+                    in
+                    builtins.toString (x + 1 - (c * 10));
+                in
+                [
+                  "$mainMod, ${ws}, workspace, ${toString (x + 1)}"
+                  "$mainMod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
+                ]
+              ) 10
+            ));
 
           binde = [
             "$mainMod CTRL ALT, H, resizeactive, -10 0"

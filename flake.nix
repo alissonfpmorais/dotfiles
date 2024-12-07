@@ -16,10 +16,13 @@
   };
 
   # outputs = { self, nixpkgs, nixpkgs-openvpn, nix, home-manager, hyprland }@inputs:
-  outputs = { nixpkgs, home-manager, ... }@args:
+  outputs =
+    { nixpkgs, home-manager, ... }@args:
     let
       system = "x86_64-linux";
-      inputs = args // { inherit system; };
+      inputs = args // {
+        inherit system;
+      };
     in
     {
       nixosConfigurations = import ./hosts inputs;

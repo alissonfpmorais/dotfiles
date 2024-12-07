@@ -1,4 +1,10 @@
-{ config, lib, pkgs, nixvim, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  nixvim,
+  ...
+}:
 
 with lib;
 
@@ -44,18 +50,18 @@ in
 
         colorschemes.gruvbox.enable = true;
 
-				# autoCmd = [
-				# 	{
-				# 		event = [ "BufWritePre" ];
-				# 		pattern = [
-				# 			"*.tsx"
-				# 			"*.ts"
-				# 			"*.jsx"
-				# 			"*.js"
-				# 		];
-				# 		command = "npm run lint";
-				# 	}
-				# ];
+        # autoCmd = [
+        # 	{
+        # 		event = [ "BufWritePre" ];
+        # 		pattern = [
+        # 			"*.tsx"
+        # 			"*.ts"
+        # 			"*.jsx"
+        # 			"*.js"
+        # 		];
+        # 		command = "npm run lint";
+        # 	}
+        # ];
 
         extraPlugins = with pkgs.vimPlugins; [
           lualine-lsp-progress
@@ -65,8 +71,8 @@ in
           {
             plugin = vim-dadbod-ui;
             config = ''
-              						let g:db_ui_execute_on_save = 0
-              						'';
+              let g:db_ui_execute_on_save = 0
+            '';
           }
           vim-visual-multi
         ];
@@ -144,31 +150,30 @@ in
                 "<leader>gd" = "definition";
                 "<leader>gi" = "implementation";
                 "<leader>gt" = "type_definition";
-								"<leader>rn" = "rename";
-								"<leader>ca" = "code_action";
+                "<leader>rn" = "rename";
+                "<leader>ca" = "code_action";
               };
               silent = true;
             };
-            servers =
-              {
-                bashls.enable = true;
-                cmake.enable = true;
-                cssls.enable = true;
-                dockerls.enable = true;
-                elmls.enable = true;
-                elixirls.enable = true;
-								# eslint.enable = true;
-                gleam.enable = true;
-								gopls.enable = true;
-                graphql.enable = true;
-                html.enable = true;
-                jsonls.enable = true;
-                lua-ls.enable = true;
-                # nixd.enable = true;
-                tailwindcss.enable = true;
-                tsserver.enable = true;
-                yamlls.enable = true;
-              };
+            servers = {
+              bashls.enable = true;
+              cmake.enable = true;
+              cssls.enable = true;
+              dockerls.enable = true;
+              elmls.enable = true;
+              elixirls.enable = true;
+              # eslint.enable = true;
+              gleam.enable = true;
+              gopls.enable = true;
+              graphql.enable = true;
+              html.enable = true;
+              jsonls.enable = true;
+              lua-ls.enable = true;
+              # nixd.enable = true;
+              tailwindcss.enable = true;
+              tsserver.enable = true;
+              yamlls.enable = true;
+            };
           };
           lsp-format.enable = true;
           # lspsaga.enable = true;
@@ -191,8 +196,8 @@ in
           };
           nvim-lightbulb.enable = true;
           oil = {
-						enable = true;
-					};
+            enable = true;
+          };
           project-nvim.enable = true;
           rainbow-delimiters.enable = true;
           rest.enable = true;
@@ -200,14 +205,29 @@ in
             enable = true;
             sections = {
               lualine_c = [
-                { icons_enabled = false; name = "filename"; }
-                { icons_enabled = true; name = "lsp_progress"; }
+                {
+                  icons_enabled = false;
+                  name = "filename";
+                }
+                {
+                  icons_enabled = true;
+                  name = "lsp_progress";
+                }
               ];
               lualine_x = [
                 # { icons_enabled = false; name = "datetime"; }
-                { icons_enabled = false; name = "encoding"; }
-                { icons_enabled = true; name = "fileformat"; }
-                { icons_enabled = true; name = "filetype"; }
+                {
+                  icons_enabled = false;
+                  name = "encoding";
+                }
+                {
+                  icons_enabled = true;
+                  name = "fileformat";
+                }
+                {
+                  icons_enabled = true;
+                  name = "filetype";
+                }
               ];
             };
           };
@@ -218,120 +238,123 @@ in
           undotree.enable = true;
           which-key = {
             enable = true;
-            registrations =
-              {
-                "<leader>" = {
-                  " " = [
-                    "<cmd>Telescope buffers<CR>"
-                    "Telescope find buffers"
-                  ];
-                  "<f5>" = [
-                    "<cmd>UndotreeToggle<CR>"
-                    "Undotree"
-                  ];
-                  a = {
-                    name = "Projects";
-                    s = [
-                      "<cmd>AddProject<CR>"
-                      "add"
-                    ];
-                  };
-                  f = {
-                    name = "Telescope find";
-                    c = [
-                      "<cmd>Telescope commands<CR>"
-                      "commands"
-                    ];
-                    f = [
-                      "<cmd>Telescope find_files hidden=true<CR>"
-                      "files"
-                    ];
-                    g = [
-                      "<cmd>Telescope git_files hidden=true<CR>"
-                      "git"
-                    ];
-                    p = [
-                      "<cmd>Telescope projects<CR>"
-                      "projects"
-                    ];
-                    s = [
-                      "<cmd>Telescope live_grep hidden=true<CR>"
-                      "text"
-                    ];
-                  };
-                  g = {
-                    name = "LSP Actions";
-
-                    # Diagnostics
-                    j = "Goto next";
-                    k = "Goto previous";
-
-                    # LspBuf
-                    D = "Show references";
-                    K = "Hover";
-                    d = "Goto definition";
-                    i = "Goto implementation";
-                    t = "Goto type definition";
-                  };
-                  t = {
-                    name = "Floaterm";
-                    e = [
-                      "<cmd>FloatermNew xplr<CR>"
-                      "explorer"
-                    ];
-                    g = [
-                      "<cmd>FloatermNew lazygit<CR>"
-                      "lazygit"
-                    ];
-                    t = [
-                      "<cmd>FloatermNew zsh<CR>"
-                      "terminal"
-                    ];
-                  };
-                  w = {
-                    name = "Database";
-                    "<CR>" = [
-                      ":normal vip<CR><PLUG>(DBUI_ExecuteQuery)"
-                      "run query"
-                    ];
-                    a = [
-                      "<cmd>DBUIAddConnection<CR>"
-                      "add connection"
-                    ];
-                    o = [
-                      "<cmd>DBUIToggle<CR>"
-                      "open UI"
-                    ];
-                  };
-                };
-                "-" = [
-                  "<cmd>Oil<CR>"
-                  "Open parent directory"
+            registrations = {
+              "<leader>" = {
+                " " = [
+                  "<cmd>Telescope buffers<CR>"
+                  "Telescope find buffers"
                 ];
+                "<f5>" = [
+                  "<cmd>UndotreeToggle<CR>"
+                  "Undotree"
+                ];
+                a = {
+                  name = "Projects";
+                  s = [
+                    "<cmd>AddProject<CR>"
+                    "add"
+                  ];
+                };
+                f = {
+                  name = "Telescope find";
+                  c = [
+                    "<cmd>Telescope commands<CR>"
+                    "commands"
+                  ];
+                  f = [
+                    "<cmd>Telescope find_files hidden=true<CR>"
+                    "files"
+                  ];
+                  g = [
+                    "<cmd>Telescope git_files hidden=true<CR>"
+                    "git"
+                  ];
+                  p = [
+                    "<cmd>Telescope projects<CR>"
+                    "projects"
+                  ];
+                  s = [
+                    "<cmd>Telescope live_grep hidden=true<CR>"
+                    "text"
+                  ];
+                };
+                g = {
+                  name = "LSP Actions";
+
+                  # Diagnostics
+                  j = "Goto next";
+                  k = "Goto previous";
+
+                  # LspBuf
+                  D = "Show references";
+                  K = "Hover";
+                  d = "Goto definition";
+                  i = "Goto implementation";
+                  t = "Goto type definition";
+                };
+                t = {
+                  name = "Floaterm";
+                  e = [
+                    "<cmd>FloatermNew xplr<CR>"
+                    "explorer"
+                  ];
+                  g = [
+                    "<cmd>FloatermNew lazygit<CR>"
+                    "lazygit"
+                  ];
+                  t = [
+                    "<cmd>FloatermNew zsh<CR>"
+                    "terminal"
+                  ];
+                };
+                w = {
+                  name = "Database";
+                  "<CR>" = [
+                    ":normal vip<CR><PLUG>(DBUI_ExecuteQuery)"
+                    "run query"
+                  ];
+                  a = [
+                    "<cmd>DBUIAddConnection<CR>"
+                    "add connection"
+                  ];
+                  o = [
+                    "<cmd>DBUIToggle<CR>"
+                    "open UI"
+                  ];
+                };
               };
+              "-" = [
+                "<cmd>Oil<CR>"
+                "Open parent directory"
+              ];
+            };
           };
           wilder = {
             enable = true;
-            modes = [ "/" "?" ":" ];
-            renderer =
-              ''
-                                                    wilder.popupmenu_renderer(
-                                											wilder.popupmenu_border_theme({
-                                												border = 'rounded',
-                                												highlights = { border = 'Normal', },
-                																				min_height = '30%',
-                																				min_width = '20%',
-                																				pumblend = 20,
-                                											})
-                                                    )
-              '';
+            modes = [
+              "/"
+              "?"
+              ":"
+            ];
+            renderer = ''
+                                                  wilder.popupmenu_renderer(
+                              											wilder.popupmenu_border_theme({
+                              												border = 'rounded',
+                              												highlights = { border = 'Normal', },
+              																				min_height = '30%',
+              																				min_width = '20%',
+              																				pumblend = 20,
+                              											})
+                                                  )
+            '';
           };
         };
       };
     };
 
-    users.users.alissonfpmorais = with pkgs; mkMerge
-      [
+    users.users.alissonfpmorais =
+      with pkgs;
+      mkMerge [
         # Basic NVim dependencies
         {
           packages = [
@@ -352,4 +375,3 @@ in
     };
   };
 }
-

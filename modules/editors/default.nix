@@ -18,7 +18,13 @@ in
   options.modules.editors = {
     enable = mkEnableOption "Enable editors activation";
     defaultEditor = mkOption {
-      type = with types; enum [ "emacs" "neovim" "vscode" ];
+      type =
+        with types;
+        enum [
+          "emacs"
+          "neovim"
+          "vscode"
+        ];
       default = "";
       description = "Shell's default editor";
     };

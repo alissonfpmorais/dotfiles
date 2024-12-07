@@ -13,7 +13,12 @@ in
 
   options.modules.de = {
     name = mkOption {
-      type = with types; enum [ "gnome" "hyprland" ];
+      type =
+        with types;
+        enum [
+          "gnome"
+          "hyprland"
+        ];
       default = "gnome";
       description = "Default desktop environment";
     };

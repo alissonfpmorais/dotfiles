@@ -1,7 +1,15 @@
-{ ags, home-manager, hyprland, nixpkgs, system, ... }:
+{
+  ags,
+  home-manager,
+  hyprland,
+  nixpkgs,
+  system,
+  ...
+}:
 let
   modulesCfg = ../modules;
-  nixCfg = systemCfg: hwCfg:
+  nixCfg =
+    systemCfg: hwCfg:
     nixpkgs.lib.nixosSystem {
       inherit system;
       extraArgs = {
@@ -12,9 +20,14 @@ let
         hwCfg
         modulesCfg
         systemCfg
-        home-manager.nixosModules.home-manager {
+        home-manager.nixosModules.home-manager
+        {
           home-manager.useUserPackages = true;
-          home-manager.users.alissonfpmorais = { lib, pkgs, ... }: { home.stateVersion = "22.11"; };
+          home-manager.users.alissonfpmorais =
+            { lib, pkgs, ... }:
+            {
+              home.stateVersion = "22.11";
+            };
         }
       ];
     };

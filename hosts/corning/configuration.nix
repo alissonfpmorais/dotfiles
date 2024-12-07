@@ -5,15 +5,18 @@
 { config, pkgs, ... }:
 {
   nix.settings = {
-		experimental-features = [ "nix-command" "flakes" ];
-  	substituters = [
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+    substituters = [
       "https://hyprland.cachix.org"
-			"https://nix-community.cachix.org"
-		];
-  	trusted-public-keys = [
+      "https://nix-community.cachix.org"
+    ];
+    trusted-public-keys = [
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-			"nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-		];
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
   };
 
   # Bootloader.
@@ -124,8 +127,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
   ];
 
   modules = {

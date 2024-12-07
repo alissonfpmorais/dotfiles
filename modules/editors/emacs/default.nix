@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 
@@ -31,14 +36,14 @@ in
     users.users.alissonfpmorais.packages = with pkgs; [
       ## Emacs itself
       # native-comp needs 'as', provided by this
-      binutils       
+      binutils
       # 28.2 + native-comp
       # ((emacsPackagesFor emacs-unstable).emacsWithPackages
       #   (epkgs: [ epkgs.vterm ]))
 
       ## Doom dependencies
-      (ripgrep.override {withPCRE2 = true;})
-      gnutls              # for TLS connectivity
+      (ripgrep.override { withPCRE2 = true; })
+      gnutls # for TLS connectivity
 
       ## Optional dependencies
       # faster projectile indexing
@@ -53,7 +58,13 @@ in
 
       ## Module dependencies
       # :checkers spell
-      (aspellWithDicts (ds: with ds; [ en en-computers en-science ]))
+      (aspellWithDicts (
+        ds: with ds; [
+          en
+          en-computers
+          en-science
+        ]
+      ))
       # :tools editorconfig
       editorconfig-core-c # per-project style config
       # :tools markdown
