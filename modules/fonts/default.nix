@@ -57,7 +57,9 @@ in
       };
 
       packages = with pkgs; [
-        (nerdfonts.override { fonts = cfg.installs; })
+        nerd-fonts.fira-code
+        nerd-fonts.fira-mono
+        nerd-fonts.jetbrains-mono
       ];
     };
   };
