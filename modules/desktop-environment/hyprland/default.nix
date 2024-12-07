@@ -1,5 +1,6 @@
 {
   config,
+  ags,
   hyprland,
   lib,
   pkgs,
@@ -51,6 +52,10 @@ in
     };
 
     home-manager.users.alissonfpmorais = {
+      imports = [
+        ags.homeManagerModules.default
+      ];
+
       home.file.".config/hypr/hyprpaper.conf".text = ''
         preload = ${wallpaperPath}/wallpaper1.jpg
         wallpaper = ,${wallpaperPath}/wallpaper1.jpg
@@ -98,7 +103,8 @@ in
           exec-once = [
             "hyprpaper"
             "systemctl --user start hyprpolkitagent"
-            "hyprctl setcursor "
+            # "hyprctl setcursor "
+            # "ags run ~/.config/ags"
           ];
 
           # Source a file (multi-file configs)
@@ -291,6 +297,18 @@ in
             ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
           ];
         };
+      };
+
+      programs.ags = {
+        enable = true;
+
+        # symlink to ~/.config/ags
+        configDir = ./ags;
+
+        # additional packages to add to gjs's runtime
+        extraPackages = with pkgs; [
+          fzf
+        ];
       };
     };
   };

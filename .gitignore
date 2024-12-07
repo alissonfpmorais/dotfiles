@@ -3,3 +3,7 @@ configuration.nix.save
 
 # private related stuff
 private/**
+
+# AGS stuff
+modules/desktop-environment/hyprland/ags/@girs/
+modules/desktop-environment/hyprland/ags/node_modules/

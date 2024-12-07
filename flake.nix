@@ -15,9 +15,9 @@
     };
   };
 
-  # outputs = { self, nixpkgs, nixpkgs-openvpn, nix, home-manager, hyprland }@inputs:
+  # outputs = { self, nixpkgs, nix, home-manager, hyprland, ags, nixvim }@inputs:
   outputs =
-    { nixpkgs, home-manager, ... }@args:
+    { ... }@args:
     let
       system = "x86_64-linux";
       inputs = args // {
