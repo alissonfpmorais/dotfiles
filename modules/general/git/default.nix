@@ -27,7 +27,7 @@ in
         MY_ENV_VAR = "value";
       };
     };
-    lazyGit.enable = mkEnableOption "Enable lazygit";
+    lazygit.enable = mkEnableOption "Enable lazygit";
     userEmail = mkOption {
       type = types.str;
       default = "alissonfpmorais@gmail.com";
@@ -65,7 +65,7 @@ in
           userEmail = cfg.userEmail;
           userName = cfg.userName;
         };
-        lazygit = mkIf cfg.lazyGit.enable {
+        lazygit = mkIf cfg.lazygit.enable {
           enable = true;
           settings = {
             os.edit = "floaterm";

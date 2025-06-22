@@ -1,9 +1,11 @@
 { ... }:
 {
   imports = [
+    ./atuin
     ./aws
     ./browser
     ./croc
+    ./devenv
     ./explorer
     ./git
     ./kitty

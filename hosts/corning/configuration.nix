@@ -17,6 +17,10 @@
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
+    trusted-users = [
+      "root"
+      "alissonfpmorais"
+    ];
   };
 
   # Bootloader.
@@ -142,6 +146,7 @@
       #   nixvim.enable = true;
       # };
       vscode.enable = true;
+      zed.enable = true;
     };
     fonts = {
       enable = true;
@@ -156,6 +161,7 @@
       steam.enable = false;
     };
     general = {
+      atuin.enable = true;
       aws.enable = true;
       browser = {
         brave.enable = true;
@@ -165,10 +171,14 @@
         vivaldi.enable = true;
       };
       croc.enable = true;
+      devenv.enable = true;
       explorer = {
         xplr.enable = true;
       };
-      git.enable = true;
+      git = {
+        enable = true;
+        lazygit.enable = true;
+      };
       kitty.enable = true;
       lorri.enable = false;
       ngrok.enable = true;

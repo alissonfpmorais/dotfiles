@@ -13,6 +13,7 @@ in
     # ./neovim
     ./rider
     ./vscode
+    ./zed
   ];
 
   options.modules.editors = {

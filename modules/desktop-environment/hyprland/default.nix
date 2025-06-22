@@ -13,7 +13,7 @@ let
   cfg = config.modules.de.hyprland;
   wallpaperPath = pkgs.runCommand "wallpaper" { } ''
     mkdir -p $out
-    cp ${./wallpaper1.jpg} $out/wallpaper1.jpg
+    cp ${./wallpapers/spy_family_01.jpeg} $out/wallpaper.jpg
   '';
 in
 # iconsSetup = pkgs.runCommand "icons" {} ''
@@ -57,8 +57,8 @@ in
       ];
 
       home.file.".config/hypr/hyprpaper.conf".text = ''
-        preload = ${wallpaperPath}/wallpaper1.jpg
-        wallpaper = ,${wallpaperPath}/wallpaper1.jpg
+        preload = ${wallpaperPath}/wallpaper.jpg
+        wallpaper = ,${wallpaperPath}/wallpaper.jpg
         ipc = off
       '';
 
@@ -70,7 +70,7 @@ in
       xdg.portal = {
         enable = true;
         extraPortals = [
-          pkgs.xdg-desktop-portal-hyprland
+          # hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
 
           # Added in conjunction with Hyprland's desktop portal to make use file chooser
           pkgs.xdg-desktop-portal-gtk
@@ -235,12 +235,13 @@ in
               "$mainMod SHIFT, B, exec, vivaldi"
               "$mainMod SHIFT, D, exec, dbeaver"
               "$mainMod SHIFT, E, exec, code"
+              "$mainMod SHIFT, Z, exec, zeditor"
               "$mainMod SHIFT, F, exec, microsoft-edge"
               "$mainMod SHIFT, M, exec, nmcli c down 6bc7eef3-6dde-483f-ab31-69189be41639"
               "$mainMod SHIFT, N, exec, nmcli c up 6bc7eef3-6dde-483f-ab31-69189be41639"
 
               "$mainMod ALT, H, workspace, r-1"
-              "$mainMod ALT, J, workspace, empty"
+              "$mainMod ALT, J, exec, hyprctl dispatch workspace m~$(hyprctl workspaces -j | jq '.[-1].id')"
               "$mainMod ALT, K, workspace, 1"
               "$mainMod ALT, L, workspace, r+1"
               "$mainMod SHIFT, H, movetoworkspace, r-1"
@@ -251,8 +252,10 @@ in
               "$mainMod CTRL, L, movewindow, r"
 
               "$mainMod ALT, left, workspace, r-1"
-              "$mainMod ALT, down, workspace, empty"
+              "$mainMod ALT, down, exec, hyprctl dispatch workspace m~$(hyprctl workspaces -j | jq '.[-1].id')"
               "$mainMod ALT, up, workspace, 1"
+              "$mainMod ALT, END, exec, hyprctl dispatch workspace m~$(hyprctl workspaces -j | jq '.[-1].id')"
+              "$mainMod ALT, HOME, workspace, 1"
               "$mainMod ALT, right, workspace, r+1"
               "$mainMod SHIFT, left, movetoworkspace, r-1"
               "$mainMod SHIFT, right, movetoworkspace, r+1"

@@ -113,6 +113,7 @@ in
           nicup = "sudo nix-channel --update";
           nifku = "sudo nix flake update";
           niupdt = "sudo nixos-rebuild switch";
+          nuf = "sudo nix flake update --flake ~/dotfiles";
           nuc = "sudo nixos-rebuild switch --flake ~/dotfiles/#corning";
         };
         zplug = {
