@@ -9,6 +9,7 @@ in
   imports = [
     ./android-studio
     ./emacs
+    ./godot
     ./idea
     # ./neovim
     ./rider

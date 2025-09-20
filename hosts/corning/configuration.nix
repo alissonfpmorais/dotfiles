@@ -145,6 +145,7 @@
       #   enable = true;
       #   nixvim.enable = true;
       # };
+      godot.enable = true;
       vscode.enable = true;
       zed.enable = true;
     };
