@@ -167,7 +167,7 @@
       browser = {
         brave.enable = true;
         chromium.enable = true;
-        edge.enable = true;
+        edge.enable = false;
         firefox.enable = true;
         vivaldi.enable = true;
       };
